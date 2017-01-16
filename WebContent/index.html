@@ -3,11 +3,100 @@
 <head>
 <meta charset="UTF-8">
 <title>Collaboration Platform :: Welcome</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="shortcut icon" href="">
+<style>
+#mainView {
+	margin-top: 60px;
+}
+
+.panel-title {
+	text-align: center;
+}
+</style>
 </head>
 <body>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<div class="container-fluid">
+		<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target=".navbar-ex1-collapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">CP LOGO</a>
+			</div>
+			<div class="collapse navbar-collapse navbar-ex1-collapse">
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="#"> Home </a></li>
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown"> Blog <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="#"> View Blogs </a></li>
+							<li><a href="#"> Create Blog </a></li>
+						</ul></li>
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown"> Event <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="#"> View Events </a></li>
+							<li><a href="#"> Create Event </a></li>
+						</ul></li>
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown"> Job <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="#"> View Jobs </a></li>
+							<li><a href="#"> Create Jobs </a></li>
+						</ul></li>
+					<li><a href="#">Contact Us</a></li>
+					<li><a href="#">About Us</a></li>
+				</ul>
+				<form class="navbar-form navbar-left" role="search">
+					<div class="form-group">
+						<input type="text" class="form-control" placeholder="Search">
+					</div>
+					<button type="submit" class="btn btn-default">Submit</button>
+				</form>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="#!/login"> Sign In </a></li>
+					<li><a href="#!/register"> Sign Up </a></li>
+				</ul>
+			</div>
+		</nav>
+
+		<div class="container-fluid" style="" id="mainView">
+			<div class="jubmotron">
+				<div>
+					<div
+						ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }"
+						ng-if="flash" ng-bind="flash.message"></div>
+					<div ng-view></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://code.angularjs.org/1.6.0/angular.min.js"></script>
+	<script src="https://code.angularjs.org/1.6.0/angular-route.min.js"></script>
+	<script src="https://code.angularjs.org/1.6.0/angular-cookies.min.js"></script>
+	<script	src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.1/sockjs.min.js"></script>
+	<script	src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+	<script src="app.js"></script>
+	<script src="cp_services/AuthService.js"></script>
+	<script src="cp_services/MsgService.js"></script>
+	<script src="cp_services/UserService.js"></script>
+	<script src="cp_user/UserController.js"></script>
+	<script src="cp_services/BlogService.js"></script>
+	<script src="cp_blog/BlogController.js"></script>
+	<script src="cp_services/EventService.js"></script>
+	<script src="cp_event/EventController.js"></script>
+	<script src="cp_home/HomeController.js"></script>
+	<script src="cp_chat/ChatController.js"></script>
+	<script src="cp_services/ChatService.js"></script>
 </body>
 </html>
