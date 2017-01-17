@@ -18,7 +18,7 @@
 }
 </style>
 </head>
-<body>
+<body ng-app="mainApp">
 	<div class="container-fluid">
 		<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
 			<div class="navbar-header">
@@ -37,23 +37,23 @@
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown"> Blog <b class="caret"></b></a>
 						<ul class="dropdown-menu">
-							<li><a href="#"> View Blogs </a></li>
-							<li><a href="#"> Create Blog </a></li>
+							<li><a href="#!/view-blogs"> View Blogs </a></li>
+							<li ng-disabled="loggedInUser == ''"><a href="#!/create-blog"> Create Blog </a></li>
 						</ul></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown"> Event <b class="caret"></b></a>
 						<ul class="dropdown-menu">
-							<li><a href="#"> View Events </a></li>
-							<li><a href="#"> Create Event </a></li>
+							<li><a href="#!/view-events"> View Events </a></li>
+							<li ng-disabled="loggedInUser == ''"><a href="#!/create-event"> Create Event </a></li>
 						</ul></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown"> Job <b class="caret"></b></a>
 						<ul class="dropdown-menu">
-							<li><a href="#"> View Jobs </a></li>
-							<li><a href="#"> Create Jobs </a></li>
+							<li><a href="#!/view-jobs"> View Jobs </a></li>
+							<li ng-disabled="loggedInUser == ''"><a href="#!/create-job"> Create Jobs </a></li>
 						</ul></li>
-					<li><a href="#">Contact Us</a></li>
-					<li><a href="#">About Us</a></li>
+					<li><a href="#!/contact-us">Contact Us</a></li>
+					<li><a href="#!/about-us">About Us</a></li>
 				</ul>
 				<form class="navbar-form navbar-left" role="search">
 					<div class="form-group">
@@ -90,13 +90,13 @@
 	<script src="cp_services/AuthService.js"></script>
 	<script src="cp_services/MsgService.js"></script>
 	<script src="cp_services/UserService.js"></script>
-	<script src="cp_user/UserController.js"></script>
-	<script src="cp_services/BlogService.js"></script>
-	<script src="cp_blog/BlogController.js"></script>
 	<script src="cp_services/EventService.js"></script>
+	<script src="cp_services/BlogService.js"></script>
+	<script src="cp_services/ChatService.js"></script>
+	<script src="cp_user/UserController.js"></script>
+	<script src="cp_blog/BlogController.js"></script>
 	<script src="cp_event/EventController.js"></script>
 	<script src="cp_home/HomeController.js"></script>
 	<script src="cp_chat/ChatController.js"></script>
-	<script src="cp_services/ChatService.js"></script>
 </body>
 </html>

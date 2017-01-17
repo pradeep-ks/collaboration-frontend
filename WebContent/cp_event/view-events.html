@@ -1,0 +1,25 @@
+
+<div class="container" ng-controller="EventController as vm">
+    <div class="col-offset-2 col-xs-8 col-sm-8 col-md-8 col-lg-8">
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <!-- <th>Blog Id</th> -->
+                    <th>Event Title</th>
+                    <th>Event Description</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="e in vm.events">
+                    <!-- <td>{{ b.blogId }}</td> -->
+                    <td>{{ e.title }}</td>
+                    <td>{{ e.description }}</td>
+                    <td>
+                        <a href="#" class="btn btn-info" ng-click="vm.getEvent(e.eventId)">View Details</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

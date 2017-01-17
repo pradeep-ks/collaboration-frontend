@@ -11,7 +11,7 @@
 
         service.login = function(username, password, callback) {
             console.log('Inside AuthService::login()....');
-            $http.post('http://localhost:9080/collaboration-restbackend/user/auth', {username: username, password: password}).then(
+            $http.post('http://localhost:10080/collaboration-restbackend/user/auth', {username: username, password: password}).then(
                 function(response) {
                 	console.log(response.data);
                     var res = {data: response.data, success: true};

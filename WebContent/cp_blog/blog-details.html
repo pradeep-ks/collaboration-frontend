@@ -1,0 +1,30 @@
+
+<div class="container" ng-controller="BlogController as vm">
+	<h2 style="text-align: center;">Blog Details <span style="text-align: right;">Created By: {{ vm.blog.user.username }} @ {{ vm.blog.dateCreated }}</span></h2>
+	<form method="POST" class="form-horizontal" role="form">
+		<div class="form-group">
+			<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+				Blog Title:
+			</div>
+			<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+				<input type="text" name="title" ng-model="vm.blog.title" class="form-control">
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+				Blog Content:
+			</div>
+			<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+				<textarea rows="5" cols="" name="content" ng-model="vm.blog.title" class="form-control"></textarea>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+				<button ng-disabled="loggedInUser == ''">Edit</button>
+			</div>
+			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+				<input type="reset" name="reset" value="Reset" class="btn btn-warning">
+			</div>
+		</div>
+	</form>
+</div>

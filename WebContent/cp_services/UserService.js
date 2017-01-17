@@ -5,7 +5,7 @@
 
     UserService.$inject = ['$http'];
     function UserService($http) {
-        var BASE_URL = 'http://localhost:9080/collaboration-restbackend/user/';
+        var BASE_URL = 'http://localhost:10080/collaboration-restbackend/user/';
         var service = {};
 
         service.getAllUsers = getAllUsers;

@@ -1,4 +1,4 @@
-var app = angular.module('mainApp', ['ngRoute', 'ngCookies']);
+/*var app = angular.module('mainApp', ['ngRoute', 'ngCookies']);
 
 app.config(['$routeProvider', '$locationProvider'], function($routeProvider, $locationProvider) {
     $routeProvider.when('/', {
@@ -17,29 +17,45 @@ app.config(['$routeProvider', '$locationProvider'], function($routeProvider, $lo
         templateUrl: 'cp_chat/chat.html',
         controller: 'ChatController',
         controllerAs: 'vm'
-    }).when('/viewBlogs', {
-        templateUrl: 'cp_blog/viewBlogs.html',
+    }).when('/view-blogs', {
+        templateUrl: 'cp_blog/view-blogs.html',
         controller: 'BlogController',
         controllerAs: 'vm'
-    }).when('/blogDetails', {
-        templateUrl: 'cp_blog/blogDetails.html',
+    }).when('/blog-details', {
+        templateUrl: 'cp_blog/blog-details.html',
         controller: 'BlogController',
         controllerAs: 'vm'
-    }).when('/createBlog', {
-        templateUrl: 'cp_blog/createBlog.html',
+    }).when('/create-blog', {
+        templateUrl: 'cp_blog/create-blog.html',
         controller: 'BlogController',
         controllerAs: 'vm'
-    }).when('/viewEvents', {
-        templateUrl: 'cp_event/viewEvents.html',
+    }).when('/view-events', {
+        templateUrl: 'cp_event/view-events.html',
         controller: 'EventController',
         controllerAs: 'vm'
-    }).when('/eventDetails', {
-        templateUrl: 'cp_event/eventDetails.html',
+    }).when('/event-details', {
+        templateUrl: 'cp_event/event-details.html',
         controller: 'EventController',
         controllerAs: 'vm'
-    }).when('/createEvent', {
-        templateUrl: 'cp_event/createEvent.html',
+    }).when('/create-event', {
+        templateUrl: 'cp_event/create-event.html',
         controller: 'EventController',
+        controllerAs: 'vm'
+    }).when('/view-jobs', {
+        templateUrl: 'cp_job/view-jobs.html',
+        controller: 'JobController',
+        controllerAs: 'vm'
+    }).when('/job-details', {
+        templateUrl: 'cp_job/job-details.html',
+        controller: 'JobController',
+        controllerAs: 'vm'
+    }).when('/create-job', {
+        templateUrl: 'cp_job/create-job.html',
+        controller: 'JobController',
+        controllerAs: 'vm'
+    }).when('/apply-job', {
+        templateUrl: 'cp_job/apply-job.html',
+        controller: 'JobController',
         controllerAs: 'vm'
     }).otherwise({
         redirectTo: '/login'
@@ -61,8 +77,8 @@ app.run(['$rootScope', '$location', '$cookies', '$http', '$timeout'], function($
             $location.path('/login');
         }
     });
-});
-/*
+});*/
+
 (function () {
     'use strict';
 
@@ -73,34 +89,60 @@ app.run(['$rootScope', '$location', '$cookies', '$http', '$timeout'], function($
         console.log('Inside config()');
         $routeProvider.when('/', {
             templateUrl: 'cp_home/home.html',
-            controller: 'HomeController'
+            controller: 'HomeController',
+            controllerAs: 'vm'
         }).when('/login', {
             templateUrl: 'cp_user/login.html',
-            controller: 'UserController'
+            controller: 'UserController',
+            controllerAs: 'vm'
         }).when('/register', {
             templateUrl: 'cp_user/register.html',
-            controller: 'UserController'
+            controller: 'UserController',
+            controllerAs: 'vm'
         }).when('/chat', {
             templateUrl: 'cp_chat/chat.html',
-            controller: 'ChatController'
-        }).when('/viewBlogs', {
-            templateUrl: 'cp_blog/viewBlogs.html',
-            controller: 'BlogController'
-        }).when('/blogDetails', {
-            templateUrl: 'cp_blog/blogDetails.html',
-            controller: 'BlogController'
-        }).when('/createBlog', {
-            templateUrl: 'cp_blog/createBlog.html',
-            controller: 'BlogController'
-        }).when('/viewEvents', {
-            templateUrl: 'cp_event/viewEvents.html',
-            controller: 'EventController'
-        }).when('/eventDetails', {
-            templateUrl: 'cp_event/eventDetails.html',
-            controller: 'EventController'
-        }).when('/createEvent', {
-            templateUrl: 'cp_event/createEvent.html',
-            controller: 'EventController'
+            controller: 'ChatController',
+            controllerAs: 'vm'
+        }).when('/view-blogs', {
+            templateUrl: 'cp_blog/view-blogs.html',
+            controller: 'BlogController',
+            controllerAs: 'vm'
+        }).when('/blog-details', {
+            templateUrl: 'cp_blog/blog-details.html',
+            controller: 'BlogController',
+            controllerAs: 'vm'
+        }).when('/create-blog', {
+            templateUrl: 'cp_blog/create-blog.html',
+            controller: 'BlogController',
+            controllerAs: 'vm'
+        }).when('/view-events', {
+            templateUrl: 'cp_event/view-events.html',
+            controller: 'EventController',
+            controllerAs: 'vm'
+        }).when('/event-details', {
+            templateUrl: 'cp_event/event-details.html',
+            controller: 'EventController',
+            controllerAs: 'vm'
+        }).when('/create-event', {
+            templateUrl: 'cp_event/create-event.html',
+            controller: 'EventController',
+            controllerAs: 'vm'
+        }).when('/view-jobs', {
+            templateUrl: 'cp_job/view-jobs.html',
+            controller: 'JobController',
+            controllerAs: 'vm'
+        }).when('/job-details', {
+            templateUrl: 'cp_job/job-details.html',
+            controller: 'JobController',
+            controllerAs: 'vm'
+        }).when('/create-job', {
+            templateUrl: 'cp_job/create-job.html',
+            controller: 'JobController',
+            controllerAs: 'vm'
+        }).when('/apply-job', {
+            templateUrl: 'cp_job/apply-job.html',
+            controller: 'JobController',
+            controllerAs: 'vm'
         }).otherwise({
             redirectTo: '/login'
         });
@@ -124,4 +166,3 @@ app.run(['$rootScope', '$location', '$cookies', '$http', '$timeout'], function($
         });
     }
 })();
-*/

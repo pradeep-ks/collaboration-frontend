@@ -1,0 +1,46 @@
+
+<div class="container" ng-controller="EventController as vm">
+	<h2 style="text-align: center;">Event Details</h2>
+	<form method="POST" class="form-horizontal" role="form" ng-submit="vm.edit(vm.evt)">
+		<div class="form-group">
+			<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+				Event Title:
+			</div>
+			<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+				<input type="text" name="title" ng-model="vm.evt.title" class="form-control">
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+				Event Description:
+			</div>
+			<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+				<textarea rows="5" cols="" name="description" ng-model="vm.evt.description" class="form-control"></textarea>
+			</div>
+		</div>
+        <div class="form-group">
+			<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+				Event Date:
+			</div>
+			<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+				<input type="date" name="eventDate" ng-model="vm.evt.eventDate" class="form-control">
+			</div>
+		</div>
+        <div class="form-group">
+			<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+				Venue:
+			</div>
+			<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+				<input type="text" name="venue" ng-model="vm.evt.venue" class="form-control">
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+				<button ng-disabled="loggedInUser == ''">Edit</button>
+			</div>
+			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+				<input type="reset" name="reset" value="Reset" class="btn btn-warning">
+			</div>
+		</div>
+	</form>
+</div>

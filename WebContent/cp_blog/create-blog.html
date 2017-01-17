@@ -1,0 +1,44 @@
+
+<div class="container">
+    <div ng-show="loggedInUser == ''">
+        <div class="alert alert-danger">
+            <p>
+                You are not logged in! Please <a href="#!/login">login</a> to create blog.
+            </p>
+            <p>
+                Not registered? Register <a href="#!/register">here</a>
+            </p>
+        </div>
+    </div>
+    <div ng-hide="loggedInUser == ''">
+        <div class="container">
+            <form method="POST" role="form" class="form-horizontal" name="blogForm" ng-submit="vm.submit()">
+                <legend style="text-align: center;">Fill In The Blog Details</legend>
+                <div class="form-group">
+                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                        <strong>Blog Title:</strong>
+                    </div>
+                    <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7">
+                        <input type="text" name="title" ng-model="vm.blog.title" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                        <strong>Blog Content:</strong>
+                    </div>
+                    <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7">
+                        <textarea name="content" ng-model="vm.blog.content" class="form-control" rows="5" cols=""></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                        <button type="submit" class="btn btn-primary">Create</button>
+                    </div>
+                    <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7">
+                        <button type="reset" class="btn btn-danger">Reset</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

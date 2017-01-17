@@ -7,7 +7,7 @@
 
     EventService.$inject = ['$http', '$q'];
     function EventService($http, $q) {
-        var BASE_URL = 'http://localhost:9080/collaboration-restbackend/event/';
+        var BASE_URL = 'http://localhost:10080/collaboration-restbackend/event/';
         var service = {};
 
         service.getAllEvents = getAllEvents;

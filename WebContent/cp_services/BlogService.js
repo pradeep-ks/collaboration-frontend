@@ -7,7 +7,7 @@
 
     BlogService.$inject = ['$http', '$q', '$rootScope'];
     function BlogService($http, $q, $rootScope) {
-        var BASE_URL = 'http://localhost:9080/collaboration-restbackend/blog/';
+        var BASE_URL = 'http://localhost:10080/collaboration-restbackend/blog/';
         var service = {};
 
         service.getAllBlogs = function() {
