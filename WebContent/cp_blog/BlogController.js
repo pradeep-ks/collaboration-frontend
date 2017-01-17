@@ -8,8 +8,8 @@
 	function BlogController($scope, BlogService, $location, $routeParams,
 			$rootScope) {
 		var vm = this;
-		vm.blog = null;
-		vm.blogs = [];
+		vm.Blog = null;
+		vm.Blogs = [];
 		vm.getAllBlogs = getAllBlogs;
 		vm.getBlog = getBlog;
 		vm.createBlog = createBlog;
@@ -21,7 +21,7 @@
 
 		function getAllBlogs() {
 			BlogService.getAllBlogs().then(function(data) {
-				vm.blogs = data;
+				vm.Blogs = data;
 			}, function(errorResponse) {
 				console.error(errorResponse);
 			});
@@ -30,23 +30,22 @@
 		function getBlog(id) {
 			BlogService.getBlogById(id).then(function(data) {
 				console.log('Data Received===> ' + data);
-				vm.blog = data;
-				vm.blog.user = data.user;
-				$location.path('/blogDetails');
+				vm.Blog = data;
+				$location.path('/blog-details');
 			}, function(errorResponse) {
 				console.error(errorResponse);
 			});
 		}
 
-		function createBlog(blog) {
-			BlogService.create(blog).then(vm.getAllBlogs,
+		function createBlog(Blog) {
+			BlogService.create(Blog).then(vm.getAllBlogs,
 					function(errorResponse) {
 						console.error(errorResponse);
 					});
 		}
 
-		function updateBlog(blog) {
-			BlogService.update(blog).then(vm.getAllBlogs,
+		function updateBlog(Blog) {
+			BlogService.update(Blog).then(vm.getAllBlogs,
 					function(errorResponse) {
 						console.error(errorResponse);
 					});
@@ -61,22 +60,22 @@
 
 		function submit() {
 			console.log('Creating New Blog');
-			vm.blog.user = $rootScope.loggedInUser;
-			vm.createBlog(vm.blog);
+			vm.Blog.user = $rootScope.loggedInUser;
+			vm.createBlog(vm.Blog);
 			vm.reset();
 		}
 
 		function edit(id) {
-			for (var i = 0; i < vm.blogs.length; i++) {
-				if (vm.blogs[i].blogId === id) {
-					vm.blog = angular.copy(vm.blogs[i]);
+			for (var i = 0; i < vm.Blogs.length; i++) {
+				if (vm.Blogs[i].blogId === id) {
+					vm.Blog = angular.copy(vm.Blogs[i]);
 					break;
 				}
 			}
 		}
 
 		function reset() {
-			vm.blog = {};
+			vm.Blog = {};
 			$scope.blogForm.$setPristine();
 		}
 

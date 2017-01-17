@@ -2,12 +2,12 @@
 <div ng-controller="UserController as vm">
     <div class="container-fluid">
         <form method="POST" class="form-horizontal" role="form" name="regForm" ng-submit="vm.register()">
-            <div class="form-group">
+            <div class="form-group" ng-class="{ 'has-error': form.username.$dirty && form.username.$error.required }">
                 <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
                     <label for="username" class="label-control" style="text-align: right;">User Name:</label>
                 </div>
                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                    <input type="text" name="username" ng-model="vm.user.username" placeholder="Username...." class="form-control">
+                    <input type="text" name="username" ng-model="vm.User.username" placeholder="Username...." class="form-control">
                 </div>
             </div>
             <div class="form-group">
@@ -15,15 +15,15 @@
                     <label for="email" class="label-control" style="text-align: right;">Email:</label>
                 </div>
                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                    <input type="email" name="email" ng-model="vm.user.email" placeholder="Email...." class="form-control">
+                    <input type="email" name="email" ng-model="vm.User.email" placeholder="Email...." class="form-control">
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group" ng-class="{ 'has-error': form.password.$dirty && form.password.$error.required }">
                 <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
                     <label for="password" class="label-control" style="text-align: right;">Password:</label>
                 </div>
                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                    <input id="passwd" type="password" name="password" ng-model="vm.user.password" placeholder="Password...." class="form-control">
+                    <input id="passwd" type="password" name="password" ng-model="vm.User.password" placeholder="Password...." class="form-control">
                 </div>
             </div>
             <div class="form-group">
@@ -40,7 +40,7 @@
             <div class="form-group">
                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6"
                      style="text-align: center;">
-                    <button class="btn btn-success" type="submit" ng-disabled="!validate()">Register</button>
+                    <button class="btn btn-success" type="submit" ng-disabled="form.$invalid || vm.dataLoading">Register</button>
                 </div>
                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                     Already Registered? <a class="btn btn-link" href="#!/login">Login</a>
@@ -63,17 +63,6 @@
                     msg.style.color = failure;
                     msg.innerHTML = "Password Did Not Match!";
                 }
-                /* if ($("#passwd").val() != $("#cpasswd").val()) {
-                	cpasswd.style.backgroundColor = failure;
-                    msg.style.color = failure;
-                    msg.innerHTML = "Password Did Not Match!";
-                    return false;
-                } else {
-                	cpasswd.style.backgroundColor = success;
-                    msg.style.color = success;
-                    msg.innerHTML = "Password Match!";
-                    return true;
-                } */
             }
         </script>
     </div>

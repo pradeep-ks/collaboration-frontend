@@ -22,15 +22,10 @@
             );
         };
 
-        service.setCredentials = function(user) {
-            console.log('Setting User Credentials...' + user);
-            $rootScope.loggedInUser = user;
-            /*UserService.getUserByUsername(username).then(
-                function(response) {
-                    console.log(response.data);
-                    $rootScope.loggedInUser = response.data;
-                }
-            );*/
+        service.setCredentials = function(User) {
+            console.log('Setting User Credentials...' + User);
+            $rootScope.loggedInUser = User;
+
             $http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope;
 
             var expireDate = new Date();

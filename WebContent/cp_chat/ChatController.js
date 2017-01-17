@@ -1,17 +1,23 @@
-angular.module('mainApp').controller('ChatController',
-		function($scope, ChatService) {
-			$scope.messages = [];
-			$scope.message = '';
-			$scope.MAX_LEN = 200;
+(function() {
+'use strict';
 
-			$scope.sendMessage = function() {
-				console.log('Inside ChatController::sendMessage()...');
-				ChatService.send($scope.message);
-				$scope.message = '';
-			};
+	angular
+		.module('mainApp')
+		.controller('ChatController', ChatController);
 
-			ChatService.receive().then(null, null, function(message) {
-				console.log('Inside ChatController::ChatService.receive()...');
-				$scope.messages.push(message);
-			});
+	ChatController.$inject = ['$scope', 'ChatService'];
+	function ChatController($scope, ChatService) {
+		$scope.Messages = [];
+		$scope.Message = '';
+		$scope.MAX_LEN = 200;
+
+		$scope.sendMessage = function() {
+			ChatService.send($scope.Message);
+			$scope.Message = '';
+		};
+
+		ChatService.receive().then(null, null, function(Message) {
+			$scope.Messages.push(Message);
 		});
+	}
+})();

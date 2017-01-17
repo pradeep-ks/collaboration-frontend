@@ -37,8 +37,8 @@
             );
         }
 
-        function createEvent(evt) {
-            return $http.post(BASE_URL, evt).then(
+        function createEvent(Event) {
+            return $http.post(BASE_URL, Event).then(
                 getAllEvents,
                 function(errResponse) {
                     return $q.reject(errResponse);
@@ -46,8 +46,8 @@
             );
         }
 
-        function updateEvent(evt) {
-            return $http.put(BASE_URL + evt.eventId, evt).then(
+        function updateEvent(Event) {
+            return $http.put(BASE_URL + Event.eventId, Event).then(
                 getAllEvents,
                 function(errResponse) {
                     return $q.reject(errResponse);

@@ -6,7 +6,7 @@
     UserController.$inject = ['UserService', '$rootScope', '$location', 'AuthService'];
     function UserController(UserService, $rootScope, $location, AuthService) {
         var vm = this;
-        vm.user = {
+        vm.User = {
             userId: null,
             username: '',
             email: '',
@@ -16,7 +16,7 @@
         };
         vm.login = function() {
             vm.dataLoading = true;
-            AuthService.login(vm.user.username, vm.user.password, function(response) {
+            AuthService.login(vm.User.username, vm.User.password, function(response) {
                 console.log(response);
                 if (response.success) {
                     console.log('Setting User Credentials...');
@@ -24,15 +24,15 @@
                     console.log('Redirectng to home...');
                     $location.path('/');
                 } else {
-                    console.error('Error Authenticating User with name: ' + vm.user.username);
+                    console.error('Error Authenticating User with name: ' + vm.User.username);
                     vm.dataLoading = false;
                 }
             });
         };
         vm.register = function () {
             vm.dataLoading = true;
-            console.log(vm.user);
-            UserService.register(vm.user).then(
+            console.log(vm.User);
+            UserService.register(vm.User).then(
                     function (response) {
                         if (response.success) {
                             console.log('Registration Successful');

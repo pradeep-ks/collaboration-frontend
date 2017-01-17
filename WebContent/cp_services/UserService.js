@@ -38,8 +38,8 @@
             );
         }
         
-        function register(user) {
-            return $http.post(BASE_URL, user).then(
+        function register(User) {
+            return $http.post(BASE_URL, User).then(
                     function(response) {
                         return {success: true};
                     },
@@ -47,10 +47,10 @@
             );
         }
         
-        function update(user) {
-            return $http.put(BASE_URL + user.userId, user).then(
+        function update(User) {
+            return $http.put(BASE_URL + User.userId, User).then(
                     handleSuccess,
-                    handleError('Error Updating User with Id: ' + user.userId)
+                    handleError('Error Updating User with Id: ' + User.userId)
             );
         }
         

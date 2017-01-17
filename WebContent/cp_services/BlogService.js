@@ -33,8 +33,8 @@
             );
         };
 
-        service.create = function(blog) {
-            return $http.post(BASE_URL, blog).then(
+        service.create = function(Blog) {
+            return $http.post(BASE_URL, Blog).then(
                 function(response) {
                     return {success: true};
                 },
@@ -44,8 +44,8 @@
             );
         };
 
-        service.update = function(blog) {
-            return $http.put(BASE_URL + blog.blogId, blog).then(
+        service.update = function(Blog) {
+            return $http.put(BASE_URL + Blog.blogId, Blog).then(
                 function(response) {
                     return response.data;
                 },

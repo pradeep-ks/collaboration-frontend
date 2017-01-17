@@ -8,20 +8,31 @@
     HomeController.$inject = ['$rootScope', 'UserService'];
     function HomeController($rootScope, UserService) {
         var vm = this;
-        vm.user = null;
-        vm.users = [];
+        vm.User = null;
+        vm.Users = [];
 
 
         activate();
         function activate() {
             loadLoggedInUser();
-            //loadRegisteredUsers();
+            loadRegisteredUsers();
         }
 
         function loadLoggedInUser() {
             console.log('Setting Logged In User...');
             console.log($rootScope.loggedInUser);
-            vm.user = $rootScope.loggedInUser;
+            vm.User = $rootScope.loggedInUser;
+        }
+
+        function loadRegisteredUsers() {
+            UserService.getAllUsers().then(
+                function(data) {
+                    vm.Users = data;
+                },
+                function(error) {
+                    console.error(error.message);
+                }
+            );
         }
     }
 })();
