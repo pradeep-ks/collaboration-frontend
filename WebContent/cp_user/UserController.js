@@ -6,14 +6,9 @@
     UserController.$inject = ['UserService', '$rootScope', '$location', 'AuthService'];
     function UserController(UserService, $rootScope, $location, AuthService) {
         var vm = this;
-        vm.User = {
-            userId: null,
-            username: '',
-            email: '',
-            password: '',
-            role: '',
-            active: ''
-        };
+        vm.User = null;
+        vm.Users = [];
+        
         vm.login = function() {
             vm.dataLoading = true;
             AuthService.login(vm.User.username, vm.User.password, function(response) {

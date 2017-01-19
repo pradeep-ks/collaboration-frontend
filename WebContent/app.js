@@ -77,7 +77,7 @@
 
         $rootScope.$on('$locationChangeStart', function (event, next, current) {
             console.log('Inside $on() event listener');
-            var restrictedPage = $.inArray($location.path(), ['/login', '/register']) === -1;
+            var restrictedPage = $.inArray($location.path(), ['/login', '/register', '/view-blogs', '/blog-details', '/view-events', '/event-details', '/view-jobs', 'job-details']) === -1;
             var loggedIn = $rootScope.loggedInUser.username;
             if (restrictedPage && !loggedIn) {
                 $location.path('/login');

@@ -29,7 +29,7 @@
 
 		function getBlog(id) {
 			BlogService.getBlogById(id).then(function(data) {
-				console.log('Data Received===> ' + data);
+				//console.log('Data Received===> ' + data);
 				vm.Blog = data;
 				$location.path('/blog-details');
 			}, function(errorResponse) {
