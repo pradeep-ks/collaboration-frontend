@@ -1,7 +1,7 @@
 (function() {
 	'use strict';
 
-	angular.module('mainApp').controller('BlogController', BlogController);
+	angular.module('MainApp').controller('BlogController', BlogController);
 
 	BlogController.inject = [ '$scope', 'BlogService', '$location',
 			'$routeParams', '$rootScope' ];
@@ -29,7 +29,6 @@
 
 		function getBlog(id) {
 			BlogService.getBlogById(id).then(function(data) {
-				//console.log('Data Received===> ' + data);
 				vm.Blog = data;
 				$location.path('/blog-details');
 			}, function(errorResponse) {
@@ -38,7 +37,7 @@
 		}
 
 		function createBlog(Blog) {
-			BlogService.create(Blog).then(vm.getAllBlogs,
+			BlogService.create(Blog).then(handleCreateSuccess,
 					function(errorResponse) {
 						console.error(errorResponse);
 					});
@@ -85,6 +84,11 @@
 		function activate() {
 			// Get the list of all blogs.
 			vm.getAllBlogs();
+		}
+		
+		function handleCreateSuccess() {
+			vm.getAllBlogs();
+			$location.path('/list-blogs');
 		}
 	}
 })();

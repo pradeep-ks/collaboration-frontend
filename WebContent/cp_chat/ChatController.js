@@ -2,7 +2,7 @@
 'use strict';
 
 	angular
-		.module('mainApp')
+		.module('MainApp')
 		.controller('ChatController', ChatController);
 
 	ChatController.$inject = ['$scope', 'ChatService'];

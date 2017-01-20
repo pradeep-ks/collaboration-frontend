@@ -2,7 +2,7 @@
 'use strict';
 
     angular
-        .module('mainApp')
+        .module('MainApp')
         .factory('JobService', JobService);
 
     JobService.$inject = ['$http', '$q'];

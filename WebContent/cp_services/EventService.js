@@ -2,7 +2,7 @@
 'use strict';
 
     angular
-        .module('mainApp')
+        .module('MainApp')
         .factory('EventService', EventService);
 
     EventService.$inject = ['$http', '$q'];

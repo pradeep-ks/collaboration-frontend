@@ -2,46 +2,52 @@
 'use strict';
 
     angular
-        .module('mainApp')
+        .module('MainApp')
         .factory('MsgService', MsgService);
 
-    MsgService.inject = ['$rootScope'];
+    MsgService.$inject = ['$rootScope'];
     function MsgService($rootScope) {
-        var service = {};
+        var service = {
+            success: success,
+            failure: failure
+        };
 
-        service.success = function(message, keepAfterLocationChange) {
-            $rootScope.flashMsg = {
+        initService();
+
+        return service;
+
+        function success(message, keepAfterLocationChange) {
+            $rootScope.FlashMsg = {
                 message: message,
                 type: 'success',
                 keepAfterLocationChange: keepAfterLocationChange
             };
-        };
+        }
 
-        service.failure = function(message, keepAfterLocationChange) {
-            $rootScope.flashMsg = {
+        function failure(message, keepAfterLocationChange) {
+            $rootScope.FlashMsg = {
                 message: message,
                 type: 'failure',
                 keepAfterLocationChange: keepAfterLocationChange
             };
-        };
+        }
         
-        (function() {
+        function initService() {
             $rootScope.$on('$locationChangeStart', function() {
-                clearMessages();
+                clearFlashMessages();
             });
 
-            function clearMessages() {
-                var flashMsg = $rootScope.flashMsg;
-                if (flashMsg) {
-                    if (!flashMsg.keepAfterLocationChange) {
-                        delete $rootScope.flashMsg;
+            function clearFlashMessages() {
+                var FlashMsg = $rootScope.FlashMsg;
+                if (FlashMsg) {
+                    if (!FlashMsg.keepAfterLocationChange) {
+                        delete $rootScope.FlashMsg;
                     } else {
-                        flashMsg.keepAfterLocationChange = false;
+                        FlashMsg.keepAfterLocationChange = false;
                     }
                 }
             }
-        })();
-
-        return service;
+        }
+        
     }
 })();

@@ -1,107 +1,79 @@
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Collaboration Platform :: Welcome</title>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="shortcut icon" href="">
-<style>
-#mainView {
-	margin-top: 60px;
-}
+<html lang="en" ng-app="MainApp">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Colaboration Project</title>
 
-.panel-title {
-	text-align: center;
-}
-</style>
-</head>
-<body ng-app="mainApp">
-	<div class="container-fluid">
-		<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse"
-					data-target=".navbar-ex1-collapse">
-					<span class="sr-only">Toggle navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="#">CP LOGO</a>
-			</div>
-			<div class="collapse navbar-collapse navbar-ex1-collapse">
-				<ul class="nav navbar-nav">
-					<li class="active"><a href="#"> Home </a></li>
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown"> Blog <b class="caret"></b></a>
-						<ul class="dropdown-menu">
-							<li><a href="#!/view-blogs"> View Blogs </a></li>
-							<li ng-disabled="loggedInUser == ''"><a href="#!/create-blog"> Create Blog </a></li>
-						</ul></li>
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown"> Event <b class="caret"></b></a>
-						<ul class="dropdown-menu">
-							<li><a href="#!/view-events"> View Events </a></li>
-							<li ng-disabled="loggedInUser == ''"><a href="#!/create-event"> Create Event </a></li>
-						</ul></li>
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown"> Job <b class="caret"></b></a>
-						<ul class="dropdown-menu">
-							<li><a href="#!/view-jobs"> View Jobs </a></li>
-							<li ng-disabled="loggedInUser == ''"><a href="#!/create-job"> Create Jobs </a></li>
-						</ul></li>
-					<li><a href="#!/contact-us">Contact Us</a></li>
-					<li><a href="#!/about-us">About Us</a></li>
-				</ul>
-				<form class="navbar-form navbar-left" role="search">
-					<div class="form-group">
-						<input type="text" class="form-control" placeholder="Search">
+		<!-- Bootstrap CSS -->
+		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+		<!-- Fontawesome CSS -->
+		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+		<link rel="shortcut icon" href="">
+
+		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+			<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+		<![endif]-->
+		<style type="text/css">
+			#main-content {
+				margin-top: 60px;
+			}
+
+			.panel-title {
+				text-align: center;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<!-- navbar code to be added later -->
+			<!-- main body -->
+			<div class="jumbotron" id="main-content">
+				<div class="container-fluid">
+					<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 col-offset-2">
+						<div ng-class="{ 'alert': FlashMsg, 'alert-success': FlashMsg.type === 'success', 'alert-danger': FlashMsg.type === 'error' }" ng-if="FlashMsg" ng-bind="FlashMsg.message"></div>
+						<div ng-view></div>
 					</div>
-					<button type="submit" class="btn btn-default">Submit</button>
-				</form>
-				<ul class="nav navbar-nav navbar-right">
-					<li><a href="#!/login"> Sign In </a></li>
-					<li><a href="#!/register"> Sign Up </a></li>
-				</ul>
-			</div>
-		</nav>
-
-		<div class="container-fluid" style="" id="mainView">
-			<div class="jubmotron">
-				<div>
-					<div
-						ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }"
-						ng-if="flash" ng-bind="flash.message"></div>
-					<div ng-view></div>
 				</div>
 			</div>
 		</div>
-	</div>
-	<script	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-	<script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<script src="https://code.angularjs.org/1.6.0/angular.min.js"></script>
-	<script src="https://code.angularjs.org/1.6.0/angular-route.min.js"></script>
-	<script src="https://code.angularjs.org/1.6.0/angular-cookies.min.js"></script>
-	<script	src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.1/sockjs.min.js"></script>
-	<script	src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
-	<!-- main script -->
-	<script src="app.js"></script>
-	<!-- JavaScript services -->
-	<script src="cp_services/AuthService.js"></script>
-	<script src="cp_services/MsgService.js"></script>
-	<script src="cp_services/UserService.js"></script>
-	<script src="cp_services/EventService.js"></script>
-	<script src="cp_services/BlogService.js"></script>
-	<script src="cp_services/ChatService.js"></script>
-	<script src="cp_services/JobService.js"></script>
-	<!-- JavaScript controllers -->
-	<script src="cp_user/UserController.js"></script>
-	<script src="cp_blog/BlogController.js"></script>
-	<script src="cp_event/EventController.js"></script>
-	<script src="cp_home/HomeController.js"></script>
-	<script src="cp_chat/ChatController.js"></script>
-	<script src="cp_job/JobController.js"></script>
-</body>
+		
+		<!-- jQuery -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<!-- Bootstrap JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<!-- AngularJS JavaScript -->
+		<!-- <script src="https://code.angularjs.org/1.6.1/angular.min.js"></script>
+		<script src="https://code.angularjs.org/1.6.1/angular-route.min.js"></script>
+		<script src="https://code.angularjs.org/1.6.1/angular-cookies.min.js"></script> -->
+		<script src="resources/js/angular.min.js"></script>
+		<script src="resources/js/angular-route.min.js"></script>
+		<script src="resources/js/angular-cookies.min.js"></script>
+		<!-- SockJS and STOMP JavaScript -->
+		<script	src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.1/sockjs.min.js"></script>
+		<script	src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+		<!-- User Defined JavaScript -->
+		<script src="main-app.js"></script>
+		<!-- User Defined JavaScript Services -->
+		<script src="cp_services/AuthService.js"></script>
+		<script src="cp_services/MsgService.js"></script>
+		<script src="cp_services/UserService.js"></script>
+		<script src="cp_services/EventService.js"></script>
+		<script src="cp_services/BlogService.js"></script>
+		<script src="cp_services/ChatService.js"></script>
+		<script src="cp_services/JobService.js"></script>
+		<script src="cp_services/FriendService.js"></script>
+		<!-- User Defined JavaScript Controllers -->
+		<script src="cp_user/UserController.js"></script>
+		<script src="cp_blog/BlogController.js"></script>
+		<script src="cp_event/EventController.js"></script>
+		<script src="cp_home/HomeController.js"></script>
+		<script src="cp_chat/ChatController.js"></script>
+		<script src="cp_job/JobController.js"></script>
+		<script src="cp_friend/FriendController.js"></script>
+	</body>
 </html>

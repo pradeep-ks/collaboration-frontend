@@ -2,7 +2,7 @@
 'use strict';
 
     angular
-        .module('mainApp')
+        .module('MainApp')
         .factory('BlogService', BlogService);
 
     BlogService.$inject = ['$http', '$q', '$rootScope'];

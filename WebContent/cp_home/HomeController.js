@@ -2,7 +2,7 @@
 'use strict';
 
     angular
-        .module('mainApp')
+        .module('MainApp')
         .controller('HomeController', HomeController);
 
     HomeController.$inject = ['$rootScope', 'UserService'];
@@ -11,8 +11,8 @@
         vm.User = null;
         vm.Users = [];
 
-
         activate();
+        
         function activate() {
             loadLoggedInUser();
             loadRegisteredUsers();

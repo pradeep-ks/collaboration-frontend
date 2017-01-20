@@ -2,7 +2,7 @@
 'use strict';
 
     angular
-        .module('mainApp')
+        .module('MainApp')
         .controller('EventController', EventController);
 
     EventController.$inject = ['$scope', '$location', '$rootScope', 'EventService'];

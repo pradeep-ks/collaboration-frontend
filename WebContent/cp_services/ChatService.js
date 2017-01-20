@@ -2,7 +2,7 @@
 'use strict';
 
 	angular
-		.module('mainApp')
+		.module('MainApp')
 		.service('ChatService', ChatService);
 
 	ChatService.inject = ['$q', '$timeout', '$rootScope'];

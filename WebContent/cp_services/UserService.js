@@ -1,74 +1,63 @@
 (function () {
     'use strict';
 
-    angular.module('mainApp').factory('UserService', UserService);
+    angular.module('MainApp').factory('UserService', UserService);
 
     UserService.$inject = ['$http'];
     function UserService($http) {
         var BASE_URL = 'http://localhost:10080/collaboration-restbackend/user/';
-        var service = {};
-
-        service.getAllUsers = getAllUsers;
-        service.getUserById = getUserById;
-        service.getUserByUsername = getUserByUsername;
-        service.register = register;
-        service.update = update;
-        service.remove = remove;
+        var service = {
+            getAllUsers: getAllUsers,
+            getUserById: getUserById,
+            getUserByUsername: getUserByUsername,
+            registerUser: registerUser,
+            updateUser: updateUser,
+            removeUser: removeUser,
+            getAllUsersExceptLoggedIn: getAllUsersExceptLoggedIn
+        };
 
         return service;
 
         function getAllUsers() {
-            return $http.get(BASE_URL).then(
-                    handleSuccess,
-                    handleError('Error Getting Users')
-            );
+            return $http.get(BASE_URL).then(handleSuccess, handleError('Error Getting Users'));
         }
 
         function getUserById(id) {
-            return $http.get(BASE_URL + 'id/' + id).then(
-                    handleSuccess,
-                    handleError('Error Getting User with Id: ' + id)
-            );
+            return $http.get(BASE_URL + 'id/' + id).then(handleSuccess, handleError('Error Getting User with Id: ' + id));
         }
         
         function getUserByUsername(username) {
-            return $http.get(BASE_URL + 'uname/' + username).then(
-                    handleSuccess,
-                    handleError('Error Getting User with Username: ' + username)
-            );
+            return $http.get(BASE_URL + 'uname/' + username).then(handleSuccess, handleError('Error Getting User with Username: ' + username));
         }
         
-        function register(User) {
-            return $http.post(BASE_URL, User).then(
-                    function(response) {
-                        return {success: true};
-                    },
-                    handleError('Error Registering User: ' + user)
-            );
+        function registerUser(User) {
+            return $http.post(BASE_URL, User).then(handleCreateSuccess, handleError('Error Registering User: ' + User));
         }
         
-        function update(User) {
-            return $http.put(BASE_URL + User.userId, User).then(
-                    handleSuccess,
-                    handleError('Error Updating User with Id: ' + User.userId)
-            );
+        function updateUser(User) {
+            return $http.put(BASE_URL + User.userId, User).then(handleSuccess, handleError('Error Updating User with Id: ' + User.userId));
         }
         
-        function remove(id) {
-            return $http.delete(BASE_URL + id).then(
-                    handleSuccess,
-                    handleError('Error Removing User with Id: ' + id)
-            );
+        function removeUser(id) {
+            return $http.delete(BASE_URL + id).then(handleSuccess, handleError('Error Removing User with Id: ' + id));
+        }
+        
+        function getAllUsersExceptLoggedIn() {
+        	return $http.get(BASE_URL + 'others/').then(handleSuccess, handleError('Error Getting Other Users'));
         }
         
         function handleSuccess(response) {
             return response.data;
         }
+
+        function handleCreateSuccess(response) {
+            var res = {success: true};
+            return res;
+        }
         
         function handleError(message) {
-            return {
-                success: false,
-                message: message
+            return function() {
+                return {success: false, message: message};
             };
         }
 

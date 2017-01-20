@@ -2,7 +2,7 @@
 'use strict';
 
     angular
-        .module('mainApp')
+        .module('MainApp')
         .controller('JobController', JobController);
 
     JobController.$inject = ['$scope', '$location', '$rootScope', 'JobService'];
