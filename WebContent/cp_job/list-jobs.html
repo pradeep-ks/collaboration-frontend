@@ -1,0 +1,16 @@
+
+<div class="row" ng-repeat="Job in vm.Jobs">
+    <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+        <h3>{{ Job.title }}</h3>
+        <p>
+            <strong>Description: </strong> {{ Job.description }}
+        </p>
+        <p>
+            <strong>Qualification: </strong> {{ Job.qualification }},
+            <strong>Location: </strong> {{ Job.location }}
+        </p>
+    </div>
+    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+        <button type="button" class="btn btn-warning" ng-click="vm.applyJob(Job.jobId)">Apply Job</button>
+    </div>
+</div>

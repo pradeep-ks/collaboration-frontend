@@ -34,6 +34,7 @@
             EventService.getEvent(id).then(
                 function(data) {
                     vm.Event = data;
+                    console.log(vm.Event);
                     $location.path('/event-details');
                 },
                 function(errResponse) {
@@ -44,7 +45,10 @@
 
         function createEvent(Event) {
             EventService.createEvent(Event).then(
-                getAllEvents,
+                function(response) {
+                	getAllEvents();
+                	$location.path('/list-events');
+                },
                 function(errResponse) {
                     console.error(errResponse);
                 }

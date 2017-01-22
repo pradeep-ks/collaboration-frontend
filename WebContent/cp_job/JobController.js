@@ -35,7 +35,7 @@
 
         vm.createJob = function(Job) {
             JobService.createJob(Job).then(
-                vm.listJobs,
+                handleCreateSuccess,
                 function(errResponse) {
                     console.error(errResponse);
                 }
@@ -77,6 +77,22 @@
                 }
             }
         };
+
+        vm.submit = function() {
+            console.log('Posting New Job....');
+            vm.createJob(vm.Job);
+            vm.reset();
+        };
+
+        vm.reset = function() {
+            vm.Job = {};
+            $scope.form.$setPristine();
+        }
+
+        function handleCreateSuccess() {
+            vm.listJobs();
+            $location.path('/list-jobs');
+        }
 
         activate();
 

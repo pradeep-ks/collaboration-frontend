@@ -1,0 +1,29 @@
+
+<div class="container">
+    <div class="row">
+        <div class="col-offset-2 col-xs-8 col-sm-8 col-md-8 col-lg-8">
+            <strong>Job Title: </strong>{{ vm.Job.title }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-offset-2 col-xs-8 col-sm-8 col-md-8 col-lg-8">
+            <strong>Job Description: </strong>{{ vm.Job.description }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            <strong>Job Qualification: </strong>{{ vm.Job.qualification }}
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            <strong>Job Location: </strong>{{ vm.Job.location }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            <strong>No. of Vacancies: </strong>{{ vm.Job.vacancy }}
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            <button type="button" class="btn btn-warning" ng-click="vm.applyJob(vm.Job.jobId)">Apply Job</button>
+        </div>
+    </div>
+</div>
