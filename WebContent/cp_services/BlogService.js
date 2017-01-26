@@ -25,6 +25,7 @@
             return $http.get(BASE_URL + id).then(
             	function(response) {
                     console.log(response.data);
+                    $rootScope.selectedBlog = response.data;
                     return response.data;
                 },
                 function(errResponse) {

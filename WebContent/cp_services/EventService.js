@@ -5,8 +5,8 @@
         .module('MainApp')
         .factory('EventService', EventService);
 
-    EventService.$inject = ['$http', '$q'];
-    function EventService($http, $q) {
+    EventService.$inject = ['$http', '$q', '$rootScope'];
+    function EventService($http, $q, $rootScope) {
         var BASE_URL = 'http://localhost:10080/collaboration-restbackend/event/';
         var service = {};
 
@@ -29,6 +29,7 @@
         function getEvent(id) {
             return $http.get(BASE_URL + id).then(
                 function(response) {
+                	$rootScope.selectedEvent = response.data;
                     return response.data;
                 },
                 function(errResponse) {

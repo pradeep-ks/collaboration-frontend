@@ -1,5 +1,5 @@
 
-<div class="container">
+<div class="container-fluid">
     
     <div class="col-offset-2 col-xs-8 col-sm-8 col-md-8 col-lg-8">
         <table class="table table-striped table-hover">
@@ -8,6 +8,7 @@
                     <th>Blog Id</th>
                     <th>Blog Title</th>
                     <th>Blog Content</th>
+                    <th>Blog Writer</th>
                     <th></th>
                 </tr>
             </thead>
@@ -16,6 +17,7 @@
                     <td>{{ b.blogId }}</td>
                     <td>{{ b.title }}</td>
                     <td>{{ b.content }}</td>
+                    <td><em>{{ b.user.username | uppercase }}</em></td>
                     <td>
                         <a href="#" class="btn btn-info" ng-click="vm.getBlog(b.blogId)">View Details</a>
                     </td>

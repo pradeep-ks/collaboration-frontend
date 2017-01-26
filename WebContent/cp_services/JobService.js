@@ -5,8 +5,8 @@
         .module('MainApp')
         .factory('JobService', JobService);
 
-    JobService.$inject = ['$http', '$q'];
-    function JobService($http, $q) {
+    JobService.$inject = ['$http', '$q', '$rootScope'];
+    function JobService($http, $q, $rootScope) {
         var BASE_URL = 'http://localhost:10080/collaboration-restbackend/job/';
         var service = {};
         
@@ -30,6 +30,7 @@
         function getJob(jobId) {
             return $http.get(BASE_URL + jobId).then(
                 function(response) {
+                	$rootScope.selectedJob = response.data;
                     return response.data;
                 },
                 function(errResponse) {

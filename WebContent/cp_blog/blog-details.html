@@ -1,24 +1,24 @@
 
-<div class="container">
-	<h2 style="text-align: center;">Blog Details <span style="text-align: right;">Created By: {{ vm.Blog.user.username }} @ {{ vm.Blog.dateCreated }}</span></h2>
+<div class="container-fluid">
+	<h2 style="text-align: center;">Blog Details <span style="text-align: right;">Created By: {{ selectedBlog.user.username }}</span></h2>
 	<form method="POST" class="form-horizontal" role="form">
 		<div class="form-group">
 			<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-				Blog Title:
+				<strong>Blog Title:</strong>
 			</div>
 			<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-				<input type="text" name="title" ng-model="vm.Blog.title" class="form-control">
+				<input type="text" name="title" ng-model="selectedBlog.title" class="form-control" contenteditable="false">
 			</div>
 		</div>
 		<div class="form-group">
 			<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-				Blog Content:
+				<strong>Blog Content:</strong>
 			</div>
 			<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-				<textarea rows="5" cols="" name="content" ng-model="vm.Blog.title" class="form-control"></textarea>
+				<textarea rows="5" cols="" name="content" ng-model="selectedBlog.content" class="form-control" contenteditable="false"></textarea>
 			</div>
 		</div>
-		<div class="form-group">
+		<div class="form-group" ng-show="loggedInUser.userId == selectedBlog.user.userId">
 			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
 				<button ng-disabled="loggedInUser == ''">Edit</button>
 			</div>
@@ -28,9 +28,4 @@
 		</div>
 	</form>
 	
-	<div>
-		All Blogs:- {{ vm.Blogs }}
-		<hr>
-		Blog:- {{ vm.Blog }}
-	</div>
 </div>
