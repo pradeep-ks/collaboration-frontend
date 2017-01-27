@@ -1,0 +1,21 @@
+
+<div class="container">
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h3 class="panel-title">Your Friends</h3>
+        </div>
+        <div class="panel-body">
+            <div class="row" ng-repeat="friend in vm.Friends">
+                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                    {{ friend.User.username }}
+                </div>
+                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                    {{ friend.online }}
+                </div>
+                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                    <a href="#!/chat" class="btn btn-success">Chat</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

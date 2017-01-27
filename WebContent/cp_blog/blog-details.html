@@ -18,9 +18,9 @@
 				<textarea rows="5" cols="" name="content" ng-model="selectedBlog.content" class="form-control" contenteditable="false"></textarea>
 			</div>
 		</div>
-		<div class="form-group" ng-show="loggedInUser.userId == selectedBlog.user.userId">
+		<div class="form-group">
 			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-				<button ng-disabled="loggedInUser == ''">Edit</button>
+				<button class="btn btn-danger" ng-disabled="loggedInUser == '' || loggedInUser.userId != selectedBlog.user.userId">Edit</button>
 			</div>
 			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
 				<input type="reset" name="reset" value="Reset" class="btn btn-warning">

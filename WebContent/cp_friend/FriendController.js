@@ -16,7 +16,7 @@
         
         vm.sendFriendRequest = sendFriendRequest;
         vm.getMyFriends = getMyFriends;
-        vm.updateFriendRequest = updateFriendRequest;
+        //vm.updateFriendRequest = updateFriendRequest;
         vm.getAllUsers = getAllUsers;
         vm.acceptFriendRequest = acceptFriendRequest;
         vm.rejectFriendRequest = rejectFriendRequest;
@@ -32,6 +32,8 @@
         function getAllUsers() {
             UserService.getAllUsersExceptLoggedIn().then(
                 function(data) {
+                	console.log('Other Users....');
+                	console.log(data);
                     vm.Users = data;
                 },
                 function(errResponse) {
@@ -64,7 +66,7 @@
         }
 
         function getMyFriendRequests() {
-            FriendService,getMyNewFriendRequests().then(
+            FriendService.getMyNewFriendRequests().then(
                 function(data) {
                     vm.FriendRequests = data;
                 },
@@ -78,7 +80,7 @@
             FriendService.acceptFriendRequest(friendId).then(
                 function(data) {
                     // vm.FriendRequests = data;
-                    getMyNewFriendRequests();
+                	getMyFriendRequests();
                 },
                 function(errResponse) {
                     MsgService.failure(errResponse, false);

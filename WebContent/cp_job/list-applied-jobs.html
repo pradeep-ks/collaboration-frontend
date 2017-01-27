@@ -1,0 +1,26 @@
+
+<div class="row" ng-repeat="aj in vm.AppliedJob">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Job Title</th>
+                        <th>Job Description</th>
+                        <th>Job Qualification</th>
+                        <th>Job Location</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{ aj.job.title }}</td>
+                        <td>{{ aj.job.description }}</td>
+                        <td>{{ aj.job.qualification }}</td>
+                        <td>{{ aj.job.location }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+    </div>
+</div>

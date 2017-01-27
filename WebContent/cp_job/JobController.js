@@ -10,6 +10,7 @@
         var vm = this;
         vm.Job = null;
         vm.Jobs = [];
+        vm.AppliedJob = [];
 
         vm.listJobs = function() {
             JobService.getAllJobs().then(
@@ -69,6 +70,19 @@
             );
         }
 
+        vm.getAppliedJobs = function() {
+        	JobService.getAppliedJobs().then(
+        		function(data) {
+        			console.log('Applied Jobs:');
+        			console.log(data);
+        			vm.AppliedJob = data;
+        		},
+        		function(errResponse) {
+        			console.error(errResponse);
+        		}
+        	);
+        }
+        
         vm.edit = function(jobId) {
             for (var i = 0; i < vm.Jobs.length; i++) {
                 if (vm.Jobs[i].jobId === jobId) {
@@ -98,6 +112,7 @@
 
         function activate() {
             vm.listJobs();
+            vm.getAppliedJobs();
         }
     }
 })();

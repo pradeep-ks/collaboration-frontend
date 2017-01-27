@@ -15,6 +15,7 @@
         service.createJob = createJob;
         service.updateJob = updateJob;
         service.applyJob = applyJob;
+        service.getAppliedJobs = getAppliedJobs;
 
         function getAllJobs() {
             return $http.get(BASE_URL).then(
@@ -66,6 +67,18 @@
                     return $q.reject(errResponse);
                 }
             );
+        }
+        
+        function getAppliedJobs() {
+        	return $http.get(BASE_URL + 'applied/').then(
+        		function(response) {
+        			console.log(response.data);
+        			return response.data;
+        		},
+        		function(errResponse) {
+        			return $q.reject(errResponse);
+        		}
+        	);
         }
         
         return service;
