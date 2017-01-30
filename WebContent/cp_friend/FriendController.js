@@ -58,7 +58,7 @@
         function getMyFriends() {
             FriendService.getMyFriends().then(
                 function(data) {
-                    vm.FriendRequests = data;
+                    vm.Friends = data;
                 },
                 function(errResponse) {
                     MsgService.failure(errResponse, false);
