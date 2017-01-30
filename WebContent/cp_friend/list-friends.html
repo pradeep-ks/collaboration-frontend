@@ -13,7 +13,7 @@
                     {{ friend.online }}
                 </div>
                 <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                    <a href="#!/chat" class="btn btn-success">Chat</a>
+                    <a class="btn btn-success" ng-click="vm.startChat(friend.friend.username)">Chat</a>
                 </div>
             </div>
         </div>

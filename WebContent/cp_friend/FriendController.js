@@ -20,6 +20,7 @@
         vm.getAllUsers = getAllUsers;
         vm.acceptFriendRequest = acceptFriendRequest;
         vm.rejectFriendRequest = rejectFriendRequest;
+        vm.startChat = startChat;
 
         activate();
 
@@ -98,6 +99,12 @@
                     MsgService.failure(errResponse, false);
                 }
             );
+        }
+        
+        function startChat(friendName) {
+        	console.log('Inside FriendController::startChat()....');
+        	$rootScope.friendName = friendName;
+        	$location.path('/private-chat');
         }
     }
 })();

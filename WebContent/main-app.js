@@ -77,6 +77,10 @@
             templateUrl: 'cp_friend/view-friend-requests.html',
             controller: 'FriendController',
             controllerAs: 'vm'
+        }).when('/private-chat', {
+            templateUrl: 'cp_private_chat/private-chat.html',
+            controller: 'PrChatController',
+            controllerAs: 'vm'
         }).otherwise({
             redirectTo: '/login'
         });
