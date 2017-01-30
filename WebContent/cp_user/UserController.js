@@ -9,6 +9,7 @@
         vm.User = null;
         vm.Users = [];
         vm.login = login;
+        vm.logout = logout;
         vm.register = register;
         
         (function init() {
@@ -46,6 +47,14 @@
                         }
                     }
             );
+        }
+        
+        function logout(userId) {
+        	UserService.logout(userId).then(
+        		function () {
+        			$location.path('/login');
+        		}
+        	);
         }
     }
 })();

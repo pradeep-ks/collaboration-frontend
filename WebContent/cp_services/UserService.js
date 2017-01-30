@@ -13,7 +13,8 @@
             registerUser: registerUser,
             updateUser: updateUser,
             removeUser: removeUser,
-            getAllUsersExceptLoggedIn: getAllUsersExceptLoggedIn
+            getAllUsersExceptLoggedIn: getAllUsersExceptLoggedIn,
+            logout: logout
         };
 
         return service;
@@ -44,6 +45,10 @@
         
         function getAllUsersExceptLoggedIn() {
         	return $http.get(BASE_URL + 'others/').then(handleSuccess, handleError('Error Getting Other Users'));
+        }
+        
+        function logout(userId) {
+        	return $http.put(BASE_URL + 'logout/').then(handleSuccess, handleError('Error Logging Out'));
         }
         
         function handleSuccess(response) {
