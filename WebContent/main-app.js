@@ -17,6 +17,18 @@
             templateUrl: 'cp_user/register.html',
             controller: 'UserController',
             controllerAs: 'vm'
+        }).when('/manage-users', {
+        	templateUrl: 'cp_admin/manage-users.html',
+        	controller: 'AdminController',
+        	controllerAs: 'vm'
+        }).when('/manage-blogs', {
+        	templateUrl: 'cp_admin/manage-blogs.html',
+        	controller: 'AdminController',
+        	controllerAs: 'vm'
+        }).when('/manage-jobs', {
+        	templateUrl: 'cp_admin/manage-jobs.html',
+        	controller: 'AdminController',
+        	controllerAs: 'vm'
         }).when('/list-blogs', {
             templateUrl: 'cp_blog/list-blogs.html',
             controller: 'BlogController',

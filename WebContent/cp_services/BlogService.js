@@ -10,8 +10,21 @@
         var BASE_URL = 'http://localhost:10080/collaboration-restbackend/blog/';
         var service = {};
 
-        service.getAllBlogs = function() {
-            return $http.get(BASE_URL).then(
+        service.getNewBlogs = function() {
+            console.log('Inside BlogService::getNewBlogs()....');
+            return $http.get(BASE_URL + 'new/').then(
+                function(response) {
+                    return response.data;
+                },
+                function(errResponse) {
+                    return $q.reject(errResponse);
+                }
+            );
+        };
+
+        service.getApprovedBlogs = function() {
+            console.log('Inside BlogService::getApprovedBlogs()....');
+            return $http.get(BASE_URL + 'approved/').then(
                 function(response) {
                     return response.data;
                 },
@@ -22,6 +35,7 @@
         };
 
         service.getBlogById = function(id) {
+            console.log('Inside BlogService::getBlogById()....');
             return $http.get(BASE_URL + id).then(
             	function(response) {
                     console.log(response.data);
@@ -35,6 +49,7 @@
         };
 
         service.create = function(Blog) {
+            console.log('Inside BlogService::create()....');
             return $http.post(BASE_URL, Blog).then(
                 function(response) {
                     return {success: true};
@@ -46,6 +61,7 @@
         };
 
         service.update = function(Blog) {
+            console.log('Inside BlogService::update()....');
             return $http.put(BASE_URL + Blog.blogId, Blog).then(
                 function(response) {
                     return response.data;
@@ -57,6 +73,7 @@
         };
 
         service.remove = function(id) {
+            console.log('Inside BlogService::remove()....');
             return $http.delete(BASE_URL + id).then(
                 function(response) {
                     return {success: true};
@@ -66,6 +83,54 @@
                 }
             );
         };
+
+        service.approveBlog = function (blogId) {
+            console.log('Inside BlogService::approveBlog()....');
+            return $http.put(BASE_URL + 'approve/' + blogId).then(
+                function (response) {
+                    return response.data;
+                },
+                function (errResponse) {
+                    return $q.reject(errResponse);
+                }
+            );
+        };
+
+        service.rejectBlog = function (blogId) {
+            console.log('Inside BlogService::rejectBlog()....');
+            return $http.put(BASE_URL + 'reject/' + blogId).then(
+                function (response) {
+                    return response.data;
+                },
+                function (errResponse) {
+                    return $q.reject(errResponse);
+                }
+            );
+        };
+
+        service.makeComment = function (blogId) {
+            console.log('Inside BlogService::makeComment()....');
+            return $http.post(BASE_URL + 'comment/' + blogId).then(
+                function (response) {
+                    return response.data;
+                },
+                function (errResponse) {
+                    return $q.reject(errResponse);
+                }
+            );
+        }
+
+        service.getComments = function (blogId) {
+            console.log('Inside BlogService::getComments()....');
+            return $http.get(BASE_URL + 'comment/' + blogId).then(
+                function (response) {
+                   return response.data;
+                },
+                function (errResponse) {
+                    return $q.reject(errResponse);
+                }
+            );
+        }
 
         return service;
     }

@@ -14,13 +14,16 @@
             updateUser: updateUser,
             removeUser: removeUser,
             getAllUsersExceptLoggedIn: getAllUsersExceptLoggedIn,
-            logout: logout
+            logout: logout,
+            enableUser: enableUser,
+            disableUser: disableUser,
+            makeAdmin: makeAdmin
         };
 
         return service;
 
         function getAllUsers() {
-            return $http.get(BASE_URL).then(handleSuccess, handleError('Error Getting Users'));
+            return $http.get(BASE_URL + 'all/').then(handleSuccess, handleError('Error Getting Users'));
         }
 
         function getUserById(id) {
@@ -49,6 +52,18 @@
         
         function logout(userId) {
         	return $http.put(BASE_URL + 'logout/').then(handleSuccess, handleError('Error Logging Out'));
+        }
+
+        function enableUser(userId) {
+            return $http.put(BASE_URL + 'enable/' + userId).then(handleSuccess, handleError('Error Enabling User'));
+        }
+
+        function disableUser(userId) {
+            return $http.put(BASE_URL + 'disable/' + userId).then(handleSuccess, handleError('Error Disabling User'));
+        }
+
+        function makeAdmin(userId) {
+            return $http.put(BASE_URL + 'makeAdmin/' + userId).then(handleSuccess, handleError('Error Promoting User As Admin'));
         }
         
         function handleSuccess(response) {
