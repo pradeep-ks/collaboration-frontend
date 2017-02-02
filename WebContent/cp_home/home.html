@@ -1,10 +1,35 @@
 
 <div>
     <h1 style="text-align: center;">WELCOME TO HOME PAGE, {{ loggedInUser.username | uppercase }}</h1>
+    <div class="container-fluid" ng-show="loggedInUser.role == 'ADMIN'">
+    	<div class="row">
+    		<div class="panel panel-info col-md-3">
+    			<div class="panel-body">
+    				<a class="btn btn-primary btn-block" href="#!/manage-users">Manage User(s)</a>
+    			</div>
+    		</div>
+    		<div class="panel panel-info col-md-3">
+    			<div class="panel-body">
+    				<a class="btn btn-primary btn-block" href="#!/manage-blogs">Manage Blog(s)</a>
+    			</div>
+    		</div>
+    		<div class="panel panel-info col-md-3">
+    			<div class="panel-body">
+    				<a class="btn btn-primary btn-block" href="#!/manage-jobs">Manage Job(s)</a>
+    			</div>
+    		</div>
+    	</div>
+    </div>
     <div class="container-fluid">
         <div class="row">
               <div class="col-offset-10 col-xs-2 col-sm-2 col-md-2 col-lg-2 pull-right">
                     <a href="#!/chat" class="btn btn-primary">Chat</a>
+              </div>
+        </div>
+        <br>
+        <div class="row">
+              <div class="col-offset-10 col-xs-2 col-sm-2 col-md-2 col-lg-2 pull-right">
+                    <a class="btn btn-warning" ng-click="vm.logout()">Logout</a>
               </div>
         </div>
         <hr>

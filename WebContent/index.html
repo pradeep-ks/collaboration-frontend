@@ -25,7 +25,7 @@
 	<div class="container-fluid">
 		<!-- navbar code to be added later -->
 		<!-- main body -->
-		<div class="jumbotron" id="main-content">
+		<div class="" id="main-content">
 			<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 col-offset-2">
 				<div ng-class="{ 'alert': FlashMsg, 'alert-success': FlashMsg.type === 'success', 'alert-danger': FlashMsg.type === 'error' }" ng-if="FlashMsg" ng-bind="FlashMsg.message"></div>
 				<div ng-view></div>
@@ -49,7 +49,7 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 	<!-- User Defined JavaScript -->
 	<script src="main-app.js"></script>
-	<!-- User Defined JavaScript Services -->
+	<!-- User Defined Angular Services -->
 	<script src="cp_services/AuthService.js"></script>
 	<script src="cp_services/MsgService.js"></script>
 	<script src="cp_services/UserService.js"></script>
@@ -59,15 +59,16 @@
 	<script src="cp_services/PrChatService.js"></script>
 	<script src="cp_services/JobService.js"></script>
 	<script src="cp_services/FriendService.js"></script>
-	<!-- User Defined JavaScript Controllers -->
-	<script src="cp_user/UserController.js"></script>
+	<!-- User Defined Angular Controllers -->
+	<script src="cp_admin/AdminController.js"></script>
 	<script src="cp_blog/BlogController.js"></script>
-	<script src="cp_event/EventController.js"></script>
-	<script src="cp_home/HomeController.js"></script>
 	<script src="cp_chat/ChatController.js"></script>
-	<script src="cp_private_chat/PrChatController.js"></script>
-	<script src="cp_job/JobController.js"></script>
+	<script src="cp_event/EventController.js"></script>
 	<script src="cp_friend/FriendController.js"></script>
+	<script src="cp_home/HomeController.js"></script>
+	<script src="cp_job/JobController.js"></script>
+	<script src="cp_private_chat/PrChatController.js"></script>
+	<script src="cp_user/UserController.js"></script>
 </body>
 
 </html>

@@ -9,6 +9,7 @@ console.log('Inside AuthService.js');
     function AuthService($http, $cookies, $rootScope, $timeout, UserService) {
         var service = {
             login: login,
+            logout: logout,
             setCredentials: setCredentials,
             clearCredentials: clearCredentials
         };
@@ -29,6 +30,18 @@ console.log('Inside AuthService.js');
                     alert('Error Logging In!');
                 }
             );
+        }
+        
+        function logout() {
+        	return $http.put('http://localhost:10080/collaboration-restbackend/user/logout/').then(
+        		function (response) {
+        			var res = {success: true};
+        			return res;
+        		},
+        		function (errResponse) {
+        			console.error('Error Logging Out!');
+        		}
+        	);
         }
 
         function setCredentials(User) {
