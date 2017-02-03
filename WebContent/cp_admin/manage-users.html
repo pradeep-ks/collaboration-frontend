@@ -1,10 +1,33 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
 
-</body>
-</html>
+<div class="container-fluid">
+    
+    <div class="panel panel-default">
+        <div class="panel-body">
+           <table class="table table-bordered table-hover">
+               <tr>
+                   <th>Username</th>
+                   <th>Email Id</th>
+                   <th>Role</th>
+                   <th>Active</th>
+                   <th colspan="3"></th>
+               </tr>
+               <tr ng-repeat="user in vm.users">
+                   <td>{{ user.username }}</td>
+                   <td>{{ user.email }}</td>
+                   <td>{{ user.role }}</td>
+                   <td>{{ user.active }}</td>
+                   <td>
+                       <button type="button" class="btn btn-danger btn-block" ng-click="vm.makeAdmin(user.userId)" ng-disabled="user.role == 'ADMIN'">Make Admin</button>
+                   </td>
+                   <td>
+                       <button type="button" class="btn btn-danger btn-block" ng-click="vm.approveUser(user.userId)" ng-disabled="user.active">Approve</button>
+                   </td>
+                   <td>
+                       <button type="button" class="btn btn-danger btn-block" ng-click="vm.rejectUser(user.userId)">Reject</button>
+                   </td>
+               </tr>
+           </table>
+        </div>
+    </div>
+    
+</div>

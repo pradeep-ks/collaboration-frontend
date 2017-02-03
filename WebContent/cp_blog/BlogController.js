@@ -1,16 +1,16 @@
-(function() {
+(function () {
 	'use strict';
 
 	angular.module('MainApp').controller('BlogController', BlogController);
 
-	BlogController.inject = [ '$scope', 'BlogService', '$location',
-			'$routeParams', '$rootScope' ];
-	function BlogController($scope, BlogService, $location, $routeParams,
-			$rootScope) {
+	BlogController.inject = ['$scope', 'BlogService', '$location', '$rootScope'];
+	function BlogController($scope, BlogService, $location, $rootScope) {
 		var vm = this;
 		vm.Blog = null;
 		vm.Blogs = [];
-		vm.getAllBlogs = getAllBlogs;
+		vm.comments = [];
+		vm.getNewBlogs = getNewBlogs;
+		vm.getApprovedBlogs = getApprovedBlogs;
 		vm.getBlog = getBlog;
 		vm.createBlog = createBlog;
 		vm.updateBlog = updateBlog;
@@ -18,43 +18,83 @@
 		vm.submit = submit;
 		vm.reset = reset;
 		vm.edit = edit;
+		vm.makeComment = makeComment;
+		vm.getComments = getComments;
 
-		function getAllBlogs() {
-			BlogService.getAllBlogs().then(function(data) {
+		function getNewBlogs() {
+			console.log('Inside BlogController::getNewBlogs()....');
+			BlogService.getNewBlogs().then(function (data) {
 				vm.Blogs = data;
-			}, function(errorResponse) {
+			}, function (errorResponse) {
+				console.error(errorResponse);
+			});
+		}
+
+		function getApprovedBlogs() {
+			console.log('Inside BlogController::getApprovedBlogs()....');
+			BlogService.getApprovedBlogs().then(function (data) {
+				vm.Blogs = data;
+			}, function (errorResponse) {
 				console.error(errorResponse);
 			});
 		}
 
 		function getBlog(id) {
-			BlogService.getBlogById(id).then(function(data) {
+			console.log('Inside BlogController::getBlog()....');
+			BlogService.getBlogById(id).then(function (data) {
 				vm.Blog = data;
 				$location.path('/blog-details');
-			}, function(errorResponse) {
+			}, function (errorResponse) {
 				console.error(errorResponse);
 			});
 		}
 
 		function createBlog(Blog) {
+			console.log('Inside BlogController::createBlog()....');
 			BlogService.create(Blog).then(handleCreateSuccess,
-					function(errorResponse) {
-						console.error(errorResponse);
-					});
+				function (errorResponse) {
+					console.error(errorResponse);
+				});
 		}
 
 		function updateBlog(Blog) {
-			BlogService.update(Blog).then(vm.getAllBlogs,
-					function(errorResponse) {
-						console.error(errorResponse);
-					});
+			console.log('Inside BlogController::updateBlog()....');
+			BlogService.update(Blog).then(vm.getApprovedBlogs,
+				function (errorResponse) {
+					console.error(errorResponse);
+				});
 		}
 
 		function deleteBlog(id) {
-			BlogService.remove(id).then(vm.getAllBlogs,
-					function(errorResponse) {
-						console.error(errorResponse);
-					});
+			console.log('Inside BlogController::deleteBlog()....');
+			BlogService.remove(id).then(vm.getApprovedBlogs,
+				function (errorResponse) {
+					console.error(errorResponse);
+				});
+		}
+
+		function makeComment(blogId) {
+			console.log('Inside BlogController::makeComment()....');
+			BlogService.makeComment(blogId).then(
+				function (response) {
+					alert('Your Comment Posted Successfully!');
+				},
+				function (errResponse) {
+					console.error('Error Posting Comment on the Blog');
+				}
+			);
+		}
+
+		function getComments(blogId) {
+			console.log('Inside BlogController::getComments()....');
+			BlogService.getComments(blogId).then(
+				function (response) {
+					vm.comments = response.data;
+				},
+				function (errResponse) {
+					console.error('Error Getting Comments on Blog!');
+				}
+			);
 		}
 
 		function submit() {
@@ -65,6 +105,7 @@
 		}
 
 		function edit(id) {
+			console.log('Inside BlogController::edit()....');
 			for (var i = 0; i < vm.Blogs.length; i++) {
 				if (vm.Blogs[i].blogId === id) {
 					vm.Blog = angular.copy(vm.Blogs[i]);
@@ -74,6 +115,7 @@
 		}
 
 		function reset() {
+			console.log('Inside BlogController::reset()....');
 			vm.Blog = {};
 			$scope.blogForm.$setPristine();
 		}
@@ -83,11 +125,13 @@
 
 		function activate() {
 			// Get the list of all blogs.
-			vm.getAllBlogs();
+			console.log('Inside BlogController::activate()....');
+			vm.getApprovedBlogs();
 		}
-		
+
 		function handleCreateSuccess() {
-			vm.getAllBlogs();
+			console.log('Inside BlogController::handleCreateSuccess()....');
+			vm.getApprovedBlogs();
 			$location.path('/list-blogs');
 		}
 	}

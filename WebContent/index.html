@@ -25,7 +25,7 @@
 	<div class="container-fluid">
 		<!-- navbar code to be added later -->
 		<!-- main body -->
-		<div class="" id="main-content">
+		<div class="container-fluid" id="main-content">
 			<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 col-offset-2">
 				<div ng-class="{ 'alert': FlashMsg, 'alert-success': FlashMsg.type === 'success', 'alert-danger': FlashMsg.type === 'error' }" ng-if="FlashMsg" ng-bind="FlashMsg.message"></div>
 				<div ng-view></div>

@@ -1,18 +1,18 @@
 <div class="container-fluid">
-<div class="panel panel-default" ng-repeat="blog in vm.blogs">
-<div class="panel-body">
-<h2>{{ blog.title }}</h2>
-<hr>
-<div class="row">
-<div class="col-md-8">
-<span class="pull-right">{{ blog.user.username }}</span>
-<hr>
-{{ blog.description }}
-</div>
-<div class="col-md-4">
-<button class="btn btn-primary" ng-click="vm.getBlogDetails(blog.blogId)">View Details</button>
-</div>
-</div>
-</div>
-</div>
+    <div class="panel panel-default" ng-repeat="blog in vm.blogs">
+        <div class="panel-body">
+            <h2>{{ blog.title }}</h2>
+            <hr>
+            <div class="row">
+                <div class="col-md-8">
+                    <span class="pull-right">{{ blog.user.username }}</span>
+                    <hr>
+                    {{ blog.description }}
+                </div>
+                <div class="col-md-4">
+                    <button class="btn btn-primary" ng-click="vm.getBlogDetails(blog.blogId)">View Details</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
