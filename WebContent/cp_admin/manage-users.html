@@ -20,10 +20,10 @@
                        <button type="button" class="btn btn-danger btn-block" ng-click="vm.makeAdmin(user.userId)" ng-disabled="user.role == 'ADMIN'">Make Admin</button>
                    </td>
                    <td>
-                       <button type="button" class="btn btn-danger btn-block" ng-click="vm.approveUser(user.userId)" ng-disabled="user.active">Approve</button>
+                       <button type="button" class="btn btn-danger btn-block" ng-click="vm.enableUser(user.userId)" ng-disabled="user.active">Approve</button>
                    </td>
                    <td>
-                       <button type="button" class="btn btn-danger btn-block" ng-click="vm.rejectUser(user.userId)">Reject</button>
+                       <button type="button" class="btn btn-danger btn-block" ng-click="vm.disableUser(user.userId)">Reject</button>
                    </td>
                </tr>
            </table>

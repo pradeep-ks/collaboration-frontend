@@ -1,7 +1,7 @@
 (function() {
     'use strict';
     console.log('Inside main-app.js');
-    angular.module('MainApp', ['ngRoute', 'ngCookies']).config(config).run(run);
+    angular.module('MainApp', ['ngRoute', 'ngCookies', 'xeditable']).config(config).run(run);
 
     config.$inject = ['$routeProvider', '$locationProvider'];
     function config($routeProvider, $locationProvider) {
@@ -98,9 +98,10 @@
         });
     }
 
-    run.$inject = ['$rootScope', '$location', '$cookies', '$http'];
-    function run($rootScope, $location, $cookies, $http) {
+    run.$inject = ['$rootScope', '$location', '$cookies', '$http', 'editableOptions'];
+    function run($rootScope, $location, $cookies, $http, editableOptions) {
         console.log('Inside run()....');
+        editableOptions.theme = 'bs3';
         $rootScope.$on('$locationChangeStart', function(event, next, current) {
             console.log('Inside run()::$on()....');
             var restrictedPage = $.inArray($location.path(), ['/login', '/register', '/list-blogs', '/blog-details', '/list-events', '/event-details', '/list-jobs', 'job-details']) === -1;

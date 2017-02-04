@@ -1,17 +1,29 @@
 <div class="container-fluid">
-    <div class="panel panel-default" ng-repeat="blog in vm.blogs">
+    <div class="panel panel-default">
         <div class="panel-body">
-            <h2>{{ blog.title }}</h2>
-            <hr>
-            <div class="row">
-                <div class="col-md-8">
-                    <span class="pull-right">{{ blog.user.username }}</span>
-                    <hr>
-                    {{ blog.description }}
-                </div>
-                <div class="col-md-4">
-                    <button class="btn btn-primary" ng-click="vm.getBlogDetails(blog.blogId)">View Details</button>
-                </div>
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Blog's Title</th>
+                            <th>Blog's Content</th>
+                            <th>Date Created</th>
+                            <th>Status</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="blog in vm.blogs">
+                            <td>{{ blog.title }}</td>
+                            <td>{{ blog.content }}</td>
+                            <td>{{ blog.dateCreated | date : 'medium' }}</td>
+                            <td>{{ blog.status | uppercase }}</td>
+                            <td>
+                                <button type="button" ng-click="vm.approveBlog(blog.blogId)" class="btn btn-primary">Approve</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

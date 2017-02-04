@@ -57,7 +57,7 @@
         vm.enableUser = function (userId) {
             console.log('Inside AdminController::enableUser()....');
             UserService.enableUser(userId).then(
-                getAllUsers,
+                vm.getAllUsers,
                 function (errResponse) {
                     console.error('Error Enabling User with Id: ' + userId);
                 }
@@ -68,7 +68,7 @@
         vm.disableUser = function (userId) {
             console.log('Inside AdminController::disableUser()....');
             UserService.disableUser(userId).then(
-                getAllUsers,
+                vm.getAllUsers,
                 function (errResponse) {
                     console.error('Error Disabling User with Id: ' + userId);
                 }
@@ -79,7 +79,7 @@
         vm.makeAdmin = function (userId) {
             console.log('Inside AdminController::makeAdmin()....');
             UserService.makeAdmin(userId).then(
-                getAllUsers,
+                vm.getAllUsers,
                 function (errResponse) {
                     console.error('Error Making User as Admin');
                 }
@@ -90,7 +90,7 @@
         vm.approveBlog = function (blogId) {
             console.log('Inside AdminController::approveBlog()....');
             BlogService.approveBlog(blogId).then(
-                getNewBlogs,
+                vm.getNewBlogs,
                 function (errResponse) {
                     console.error('Error Approving Blog!!!');
                 }
@@ -101,7 +101,7 @@
         vm.rejectBlog = function (blogId) {
             console.log('Inside AdminController::rejectBlog()....');
             BlogService.rejectBlog(blogId).then(
-                getNewBlogs,
+                vm.getNewBlogs,
                 function (errResponse) {
                     console.error('Error Rejecting Blog!');
                 }
@@ -112,7 +112,7 @@
         vm.postNewJob = function (job) {
             console.log('Inside AdminController::postNewJob()....');
             JobService.createJob(job).then(
-                getAllJobs,
+                vm.getAllJobs,
                 function (errResponse) {
                     console.error('Error Posting New Job!');
                 }
@@ -123,7 +123,7 @@
         vm.updateJob = function (job) {
             console.log('Inside AdminController::updateJob()....');
             JobService.updateJob(job).then(
-                getAllJobs,
+                vm.getAllJobs,
                 function (errResponse) {
                     console.error('Error Updating Job!');
                 }

@@ -1,31 +1,49 @@
-
-<div class="container-fluid">
-	<h2 style="text-align: center;">Blog Details <span style="text-align: right;">Created By: {{ selectedBlog.user.username }}</span></h2>
-	<form method="POST" class="form-horizontal" role="form">
+<div class="container">
+	<h2 style="text-align: center;"> {{ selectedBlog.title }} <span style="text-align: right;">Created By: {{ selectedBlog.user.username | uppercase }}</span></h2>
+	<form editable-form class="form-horizontal" name="form" onaftersave="vm.updateBlog(selectedBlog)">
 		<div class="form-group">
 			<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-				<strong>Blog Title:</strong>
+				<span class="title">Blog Title: </span>
 			</div>
 			<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-				<input type="text" name="title" ng-model="selectedBlog.title" class="form-control" contenteditable="false">
+				<span editable-text="selectedBlog.title" e-name="title" onbeforesave="checkTitle($data)" e-required>{{ selectedBlog.title || 'empty' }}</span>
 			</div>
 		</div>
 		<div class="form-group">
 			<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-				<strong>Blog Content:</strong>
+				<span class="title">Blog Description: </span>
 			</div>
 			<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-				<textarea rows="5" cols="" name="content" ng-model="selectedBlog.content" class="form-control" contenteditable="false"></textarea>
+				<span editable-textarea="selectedBlog.content" e-rows="7" e-cols="40" e-name="description" onbeforesave="checkContent($data)"
+					e-required>{{ selectedBlog.content || 'empty' }}</span>
 			</div>
 		</div>
-		<div class="form-group">
-			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-				<button class="btn btn-danger" ng-disabled="loggedInUser == '' || loggedInUser.userId != selectedBlog.user.userId">Edit</button>
-			</div>
-			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-				<input type="reset" name="reset" value="Reset" class="btn btn-warning">
-			</div>
+		<div class="buttons" ng-show="loggedInUser.userId == selectedBlog.user.userId">
+			<button type="button" class="btn btn-default" ng-click="form.$show()" ng-show="!form.$visible">Edit</button>
+			<!-- buttons to submit / cancel form -->
+			<span ng-show="form.$visible">
+				<button type="submit" class="btn btn-primary" ng-disabled="form.$waiting">Save</button>
+				<button type="button" class="btn btn-default" ng-disabled="form.$waiting" ng-click="form.$cancel()">Cancel</button>
+			</span>
 		</div>
 	</form>
+	
+	<div class="container">
+		
+		<form action="" method="POST" class="form-horizontal" role="form">
+				<div class="form-group">
+					<legend>Form title</legend>
+				</div>
+		
+				
+		
+				<div class="form-group">
+					<div class="col-sm-10 col-sm-offset-2">
+						<button type="submit" class="btn btn-primary">Submit</button>
+					</div>
+				</div>
+		</form>
+		
+	</div>
 	
 </div>

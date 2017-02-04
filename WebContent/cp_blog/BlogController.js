@@ -9,7 +9,7 @@
 		vm.Blog = null;
 		vm.Blogs = [];
 		vm.comments = [];
-		vm.getNewBlogs = getNewBlogs;
+		/*vm.getNewBlogs = getNewBlogs;*/
 		vm.getApprovedBlogs = getApprovedBlogs;
 		vm.getBlog = getBlog;
 		vm.createBlog = createBlog;
@@ -17,10 +17,10 @@
 		vm.deleteBlog = deleteBlog;
 		vm.submit = submit;
 		vm.reset = reset;
-		vm.edit = edit;
+		/*vm.edit = edit;*/
 		vm.makeComment = makeComment;
 		vm.getComments = getComments;
-
+/*
 		function getNewBlogs() {
 			console.log('Inside BlogController::getNewBlogs()....');
 			BlogService.getNewBlogs().then(function (data) {
@@ -29,7 +29,7 @@
 				console.error(errorResponse);
 			});
 		}
-
+*/
 		function getApprovedBlogs() {
 			console.log('Inside BlogController::getApprovedBlogs()....');
 			BlogService.getApprovedBlogs().then(function (data) {
@@ -103,7 +103,7 @@
 			vm.createBlog(vm.Blog);
 			vm.reset();
 		}
-
+/*
 		function edit(id) {
 			console.log('Inside BlogController::edit()....');
 			for (var i = 0; i < vm.Blogs.length; i++) {
@@ -113,7 +113,7 @@
 				}
 			}
 		}
-
+*/
 		function reset() {
 			console.log('Inside BlogController::reset()....');
 			vm.Blog = {};
@@ -134,5 +134,15 @@
 			vm.getApprovedBlogs();
 			$location.path('/list-blogs');
 		}
+		
+		$scope.checkTitle = function (data) {
+            if (data === '')
+                return 'Blog title cannot be empty';
+        };
+
+        $scope.checkContent = function (data) {
+            if (data === '')
+                return 'Content cannot be empty';
+        }
 	}
 })();
