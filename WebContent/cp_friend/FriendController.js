@@ -106,5 +106,27 @@
         	$rootScope.friendName = friendName;
         	$location.path('/private-chat');
         }
+
+        vm.isFriend = function (userId) {
+        	console.log('Inside isFriend()....');
+            for (var index = 0; index < vm.Friends.length; index++) {
+            	console.log(vm.Friends[index]);
+                if (vm.Friends[index].user.userId === userId) {
+                    return true;
+                }
+            }
+            return false;
+        };
+
+        vm.hasFriendRequestSent = function (toUserId) {
+        	console.log('Inside hasFriendRequestSent()....');
+            for (var index = 0; index < vm.FriendRequests.length; index++) {
+            	console.log(vm.FriendRequests[index]);
+                if (vm.FriendRequests[index].user.userId === toUserId) {
+                    return true;
+                }
+            }
+            return false;
+        };
     }
 })();

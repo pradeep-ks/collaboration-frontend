@@ -19,14 +19,14 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="UserObj in vm.Users | filter: search">
-                    <td>{{ UserObj.userId }}</td>
-                    <td>{{ UserObj.username}}</td>
-                    <td>{{ UserObj.email}}</td>
-                    <td>{{ UserObj.role}}</td>
-                    <td>{{ UserObj.isOnline }}</td>
+                <tr ng-repeat="user in vm.Users | filter: search">
+                    <td>{{ user.userId }}</td>
+                    <td>{{ user.username}}</td>
+                    <td>{{ user.email}}</td>
+                    <td>{{ user.role}}</td>
+                    <td>{{ user.isOnline }}</td>
                     <td>
-                        <button type="button" class="btn btn-warning" ng-click="vm.sendFriendRequest(UserObj.userId)">Send Friend Request</button>
+                        <button type="button" class="btn btn-warning" ng-click="vm.sendFriendRequest(user.userId)" ng-disabled="vm.isFriend(user.userId) || vm.hasFriendRequestSent(user.userId)">Send Friend Request</button>
                     </td>
                 </tr>
             </tbody>

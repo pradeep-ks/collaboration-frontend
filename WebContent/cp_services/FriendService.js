@@ -1,63 +1,76 @@
 (function() {
-'use strict';
+	'use strict';
 
-    angular
-        .module('MainApp')
-        .factory('FriendService', FriendService);
+	console.log('Inside FriendService.js');
+	
+	angular.module('MainApp').factory('FriendService', FriendService);
 
-    FriendService.$inject = ['$http'];
-    function FriendService($http) {
-        var BASE_URL = 'http://localhost:10080/collaboration-restbackend/user/';
-        var service = {
-            sendFriendRequest:sendFriendRequest,
-            getMyFriends: getMyFriends,
-            getMyNewFriendRequests: getMyNewFriendRequests,
-            acceptFriendRequest: acceptFriendRequest,
-            rejectFriendRequest: rejectFriendRequest
-        };
-        
-        return service;
+	FriendService.$inject = [ '$http', '$q' ];
+	function FriendService($http, $q) {
+		var BASE_URL = 'http://localhost:10080/collaboration-restbackend/user/';
+		var service = {
+			sendFriendRequest : sendFriendRequest,
+			getMyFriends : getMyFriends,
+			getMyNewFriendRequests : getMyNewFriendRequests,
+			acceptFriendRequest : acceptFriendRequest,
+			rejectFriendRequest : rejectFriendRequest
+		};
 
-        function sendFriendRequest(friendId) {
-            return $http.get(BASE_URL + 'sendRequest/' + friendId).then(
-                handleSuccess, handleError('Error Sending Friend Request')
-            );
-        }
+		return service;
 
-        function getMyFriends() {
-            return $http.get(BASE_URL + 'friends/').then(
-                handleSuccess, handleError('Error Getting Your Friends')
-            );
-        }
+		function sendFriendRequest(friendId) {
+			console.log('FriendService::sendFriendRequest()....');
+			return $http.get(BASE_URL + 'sendRequest/' + friendId).then(
+					function(response) {
+						console.log(response.data);
+						return response.data;
+					}, function(errResponse) {
+						console.error('Error Sending Friend Request To: ' + friendId);
+						return $q.reject(errResponse);
+					});
+		}
 
-        function getMyNewFriendRequests() {
-            return $http.get(BASE_URL + 'newFriendRequests/').then(
-                handleSuccess, handleError('Error Getting New Friend Requests')
-            );
-        }
+		function getMyFriends() {
+			console.log('FriendService::getMyFriends()....');
+			return $http.get(BASE_URL + 'friends/').then(function(response) {
+				console.log(response.data);
+				return response.data;
+			}, function(errResponse) {
+				return $q.reject(errResponse);
+			});
+		}
 
-        function acceptFriendRequest(friendId) {
-            return $http.get(BASE_URL + 'accept/' + friendId).then(
-                handleSuccess, handleError('Error Accepting Friend Requests')
-            );
-        }
+		function getMyNewFriendRequests() {
+			console.log('FriendService::getMyNewFriendRequests()....');
+			return $http.get(BASE_URL + 'newFriendRequests/').then(
+					function(response) {
+						console.log(response.data);
+						return response.data;
+					}, function(errResponse) {
+						return $q.reject(errResponse);
+					});
+		}
 
-        function rejectFriendRequest(friendId) {
-            return $http.get(BASE_URL + 'reject/' + friendId).then(
-                handleSuccess, handleError('Error Rejecting Friend Requests')
-            );
-        }
+		function acceptFriendRequest(friendId) {
+			console.log('FriendService::acceptFriendRequest()....');
+			return $http.get(BASE_URL + 'accept/' + friendId).then(
+					function(response) {
+						console.log(response.data);
+						return response.data;
+					}, function(errResponse) {
+						return $q.reject(errResponse);
+					});
+		}
 
-        function handleSuccess(response) {
-            return response.data;
-        }
-
-        function handleError(message) {
-            var errRes = {
-                message: message,
-                success: false
-            };
-            return errRes;
-        }
-    }
+		function rejectFriendRequest(friendId) {
+			console.log('FriendService::rejectFriendRequest()....');
+			return $http.get(BASE_URL + 'reject/' + friendId).then(
+					function(response) {
+						console.log(response.data);
+						return response.data;
+					}, function(errResponse) {
+						return $q.reject(errResponse);
+					});
+		}
+	}
 })();
