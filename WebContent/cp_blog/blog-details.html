@@ -27,23 +27,36 @@
 			</span>
 		</div>
 	</form>
-	
-	<div class="container">
-		
-		<form action="" method="POST" class="form-horizontal" role="form">
-				<div class="form-group">
-					<legend>Form title</legend>
-				</div>
-		
-				
-		
-				<div class="form-group">
-					<div class="col-sm-10 col-sm-offset-2">
-						<button type="submit" class="btn btn-primary">Submit</button>
+	<div class="container-fluid">
+		<hr>
+		<div class="panel panel-default" ng-repeat="comment in selectedBlogComments">
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+						<h3 class="panel-title">Commented By: {{ selectedBlogComments.user.username }}</h3>
 					</div>
 				</div>
-		</form>
-		
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+						{{ selectedBlogComments.comments }}
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
-	
+	<div class="container-fluid" ng-hide="selectedBlog.user.userId == loggedInUser.userId">
+		<hr>
+		<form method="POST" class="form-horizontal" role="form">
+			<div class="row">
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					<textarea rows="5" cols="" ng-model="vm.comment.comments" class="form-control"></textarea>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-10 col-sm-offset-2">
+					<button type="submit" class="btn btn-primary" ng-click="vm.makeComment(selectedBlog)">Post Comment</button>
+				</div>
+			</div>
+		</form>
+	</div>
 </div>

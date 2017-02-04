@@ -108,9 +108,9 @@
             );
         };
 
-        service.makeComment = function (blogId) {
+        service.makeComment = function (comment) {
             console.log('Inside BlogService::makeComment()....');
-            return $http.post(BASE_URL + 'comment/' + blogId).then(
+            return $http.post(BASE_URL + 'comment/' + comment.blog.blogId, comment).then(
                 function (response) {
                     return response.data;
                 },
@@ -124,7 +124,9 @@
             console.log('Inside BlogService::getComments()....');
             return $http.get(BASE_URL + 'comment/' + blogId).then(
                 function (response) {
-                   return response.data;
+                	$rootScope.selectedBlogComments = response.data;
+                	console.log(selectedBlogComments);
+                	return response.data;
                 },
                 function (errResponse) {
                     return $q.reject(errResponse);

@@ -7,6 +7,7 @@
 	function BlogController($scope, BlogService, $location, $rootScope) {
 		var vm = this;
 		vm.Blog = null;
+		vm.comment = null;
 		vm.Blogs = [];
 		vm.comments = [];
 		/*vm.getNewBlogs = getNewBlogs;*/
@@ -42,7 +43,10 @@
 		function getBlog(id) {
 			console.log('Inside BlogController::getBlog()....');
 			BlogService.getBlogById(id).then(function (data) {
+				console.log(data);
 				vm.Blog = data;
+				console.log('Getting Comments On Blog Id: ' + id);
+				vm.getComments($rootScope.selectedBlog.blogId);
 				$location.path('/blog-details');
 			}, function (errorResponse) {
 				console.error(errorResponse);
@@ -73,11 +77,16 @@
 				});
 		}
 
-		function makeComment(blogId) {
+		function makeComment(blog) {
 			console.log('Inside BlogController::makeComment()....');
-			BlogService.makeComment(blogId).then(
+			console.log('Posting Comment' + vm.comment.comments);
+			console.log('On Blog: -');
+			console.log(blog);
+			vm.comment.blog = blog;
+			BlogService.makeComment(vm.comment).then(
 				function (response) {
 					alert('Your Comment Posted Successfully!');
+					$location.path('/');
 				},
 				function (errResponse) {
 					console.error('Error Posting Comment on the Blog');
@@ -89,6 +98,7 @@
 			console.log('Inside BlogController::getComments()....');
 			BlogService.getComments(blogId).then(
 				function (response) {
+					console.log(response.data);
 					vm.comments = response.data;
 				},
 				function (errResponse) {
