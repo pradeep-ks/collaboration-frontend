@@ -10,7 +10,6 @@
 		vm.comment = null;
 		vm.Blogs = [];
 		vm.comments = [];
-		/*vm.getNewBlogs = getNewBlogs;*/
 		vm.getApprovedBlogs = getApprovedBlogs;
 		vm.getBlog = getBlog;
 		vm.createBlog = createBlog;
@@ -18,19 +17,9 @@
 		vm.deleteBlog = deleteBlog;
 		vm.submit = submit;
 		vm.reset = reset;
-		/*vm.edit = edit;*/
 		vm.makeComment = makeComment;
 		vm.getComments = getComments;
-/*
-		function getNewBlogs() {
-			console.log('Inside BlogController::getNewBlogs()....');
-			BlogService.getNewBlogs().then(function (data) {
-				vm.Blogs = data;
-			}, function (errorResponse) {
-				console.error(errorResponse);
-			});
-		}
-*/
+
 		function getApprovedBlogs() {
 			console.log('Inside BlogController::getApprovedBlogs()....');
 			BlogService.getApprovedBlogs().then(function (data) {
@@ -43,10 +32,6 @@
 		function getBlog(id) {
 			console.log('Inside BlogController::getBlog()....');
 			BlogService.getBlogById(id).then(function (data) {
-				console.log(data);
-				vm.Blog = data;
-				console.log('Getting Comments On Blog Id: ' + id);
-				vm.getComments($rootScope.selectedBlog.blogId);
 				$location.path('/blog-details');
 			}, function (errorResponse) {
 				console.error(errorResponse);
@@ -113,17 +98,7 @@
 			vm.createBlog(vm.Blog);
 			vm.reset();
 		}
-/*
-		function edit(id) {
-			console.log('Inside BlogController::edit()....');
-			for (var i = 0; i < vm.Blogs.length; i++) {
-				if (vm.Blogs[i].blogId === id) {
-					vm.Blog = angular.copy(vm.Blogs[i]);
-					break;
-				}
-			}
-		}
-*/
+
 		function reset() {
 			console.log('Inside BlogController::reset()....');
 			vm.Blog = {};

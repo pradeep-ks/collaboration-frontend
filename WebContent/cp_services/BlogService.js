@@ -1,5 +1,5 @@
-(function() {
-'use strict';
+(function () {
+    'use strict';
 
     angular
         .module('MainApp')
@@ -10,75 +10,87 @@
         var BASE_URL = 'http://localhost:10080/collaboration-restbackend/blog/';
         var service = {};
 
-        service.getNewBlogs = function() {
+        service.getNewBlogs = function () {
             console.log('Inside BlogService::getNewBlogs()....');
             return $http.get(BASE_URL + 'new/').then(
-                function(response) {
+                function (response) {
                     return response.data;
                 },
-                function(errResponse) {
+                function (errResponse) {
                     return $q.reject(errResponse);
                 }
             );
         };
 
-        service.getApprovedBlogs = function() {
+        service.getApprovedBlogs = function () {
             console.log('Inside BlogService::getApprovedBlogs()....');
             return $http.get(BASE_URL + 'approved/').then(
-                function(response) {
+                function (response) {
                     return response.data;
                 },
-                function(errResponse) {
+                function (errResponse) {
                     return $q.reject(errResponse);
                 }
             );
         };
 
-        service.getBlogById = function(id) {
+        service.getBlogById = function (id) {
             console.log('Inside BlogService::getBlogById()....');
             return $http.get(BASE_URL + id).then(
-            	function(response) {
+                function (response) {
                     console.log(response.data);
                     $rootScope.selectedBlog = response.data;
-                    return response.data;
+                    console.log('Calling getComments() inside getBlogById()....');
+                    //service.getComments(response.data.blogId);
+                    //return response.data;
+                    return $http.get(BASE_URL + 'comment/' + response.data.blogId).then(
+                        function (response) {
+                            $rootScope.selectedBlogComments = response.data;
+                            console.log($rootScope.selectedBlogComments);
+                            return response.data;
+                        },
+                        function (errResponse) {
+                            return $q.reject(errResponse);
+                        }
+                    );
                 },
-                function(errResponse) {
+                function (errResponse) {
                     return $q.reject(errResponse);
                 }
             );
         };
 
-        service.create = function(Blog) {
+        service.create = function (Blog) {
             console.log('Inside BlogService::create()....');
             return $http.post(BASE_URL, Blog).then(
-                function(response) {
-                    return {success: true};
+                function (response) {
+                    return { success: true };
                 },
-                function(errResponse) {
+                function (errResponse) {
                     return $q.reject(errResponse);
                 }
             );
         };
 
-        service.update = function(Blog) {
+        service.update = function (Blog) {
             console.log('Inside BlogService::update()....');
             return $http.put(BASE_URL + Blog.blogId, Blog).then(
-                function(response) {
+                function (response) {
                     return response.data;
                 },
-                function(errResponse) {
+                function (errResponse) {
                     return $q.reject(errResponse);
                 }
             );
         };
 
-        service.remove = function(id) {
+        service.remove = function (id) {
             console.log('Inside BlogService::remove()....');
             return $http.delete(BASE_URL + id).then(
-                function(response) {
-                    return {success: true};
+                function (response) {
+                    return { success: true };
                 },
-                function(errResponse) {
+                function (errResponse) {
                     return $q.reject(errResponse);
                 }
             );
@@ -124,9 +136,9 @@
             console.log('Inside BlogService::getComments()....');
             return $http.get(BASE_URL + 'comment/' + blogId).then(
                 function (response) {
-                	$rootScope.selectedBlogComments = response.data;
-                	console.log(selectedBlogComments);
-                	return response.data;
+                    $rootScope.selectedBlogComments = response.data;
+                    console.log(selectedBlogComments);
+                    return response.data;
                 },
                 function (errResponse) {
                     return $q.reject(errResponse);
