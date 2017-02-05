@@ -130,9 +130,55 @@
             );
         };
 
+        /** function to retrieve all events. */
+        vm.getAllEvents = function () {
+            console.log('Inside AdminController::getAllEvents()....');
+            EventService.getAllEvents().then(
+                function (data) {
+                    vm.events = data;
+                },
+                function (errResponse) {
+                    console.error('Error Getting All Events!');
+                }
+            );
+        };
+
+        /** function to post new Event. */
+        vm.postNewEvent = function (event) {
+            console.log('Inside AdminController::postNewEvent()....');
+            EventService.postNewEvent(event).then(
+                vm.getAllEvents,
+                function (errResponse) {
+                    console.error('Error Posting New Event!');
+                }
+            );
+        };
+
+        /** function to update an existing event */
+        vm.updateEvent = function (event) {
+            console.log('Inside AdminController::updateEvent()....');
+            EventService.updateEvent(event).then(
+                vm.getAllEvents,
+                function (errResponse) {
+                    console.error('Error Updating Event!');
+                }
+            );
+        };
+
+        /** function to edit an existing event. */
+        vm.editEvent = function (eventId) {
+            console.log("Inside AdminController::editEvent()....");
+            for (var index = 0; index < vm.events.length; index++) {
+                if (vm.events[index].eventId === eventId) {
+                    vm.event = angular.copy(vm.events[index]);
+                    break;
+                }
+            }
+        };
+
         /** function to edit an existing job for updation. */
-        vm.edit = function (jobId) {
-            console.log('Inside AdminController::edit()....');
+        vm.editJob = function (jobId) {
+            console.log('Inside AdminController::editJob()....');
             for (var index = 0; index < vm.jobs.length; index++) {
                 if (vm.jobs[index].jobId === jobId) {
                     vm.job = angular.copy(vm.jobs[index]);

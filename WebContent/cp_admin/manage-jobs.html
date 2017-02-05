@@ -1,13 +1,107 @@
+<div class="container-fluid">
+    <form method="POST" class="form-horizontal" role="form" name="form">
+        <h2>Job Creation/Updation Form</h2>
 
-<table class="table table-bordered table-hover">
-    <thead>
-        <tr>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td></td>
-        </tr>
-    </tbody>
-</table>
+        <div class="form-group">
+            <label for="jobId" class="col-sm-2 control-label">Job Id:</label>
+            <div class="col-sm-10">
+                <input type="text" name="jobId" class="form-control" ng-model="vm.job.jobId" disabled>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="title" class="col-sm-2 control-label">Title:</label>
+            <div class="col-sm-10">
+                <input type="text" name="title" class="form-control" required="required" ng-model="vm.job.title">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="description" class="col-sm-2 control-label">Description:</label>
+            <div class="col-sm-10">
+                <textarea name="description" class="form-control" rows="5" required="required" ng-model="vm.job.description"></textarea>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="qualification" class="col-sm-2 control-label">Qualification:</label>
+            <div class="col-sm-10">
+                <input type="text" name="qualification" class="form-control" required="required" ng-model="vm.job.qualification">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="location" class="col-sm-2 control-label">Location:</label>
+            <div class="col-sm-10">
+                <input type="text" name="location" class="form-control" required="required" ng-model="vm.job.location">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="dateTime" class="col-sm-2 control-label">Date:</label>
+            <div class="col-sm-10">
+                <input type="date" name="dateTime" class="form-control" required="required" ng-model="vm.job.dateTime">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="vacancy" class="col-sm-2 control-label">Vacancy:</label>
+            <div class="col-sm-10">
+                <input type="number" name="vacancy" class="form-control" min="1" max="" step="1" required="required" ng-model="vm.job.vacancy">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="status" class="col-sm-2 control-label">Status:</label>
+            <div class="col-sm-10">
+                <select name="status" class="form-control">
+                    <option value="" selected >-- Select One --</option>
+                    <option value="NEW">New Job</option>
+                    <option value="EXPIRED">Expired</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-10 col-sm-offset-2" ng-show="vm.job.jobId != 'undefined' || vm.job.jobId != ''">
+                <button type="submit" class="btn btn-primary" ng-click="vm.postNewJob(vm.job)">Post</button>
+            </div>
+            <div class="col-sm-10 col-sm-offset-2" ng-show="vm.job.jobId == '' || vm.job.jobId == 'undefined'">
+                <button type="submit" class="btn btn-primary" ng-click="vm.updateJob(vm.job)">Update</button>
+            </div>
+        </div>
+    </form>
+    <hr>
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Job Id</th>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Qualification</th>
+                    <th>Date</th>
+                    <th>Location</th>
+                    <th>Vacancy</th>
+                    <th>Status</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="job in vm.jobs">
+                    <td>{{ job.jobId }}</td>
+                    <td>{{ job.title }}</td>
+                    <td>{{ job.description }}</td>
+                    <td>{{ job.qualification }}</td>
+                    <td>{{ job.date | date : 'medium' }}</td>
+                    <td>{{ job.location }}</td>
+                    <td>{{ job.vacancy }}</td>
+                    <td>{{ job.status }}</td>
+                    <td>
+                        <button type="submit" class="btn btn-primary" ng-click="vm.editJob(job.jobId)">Edit</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -24,6 +24,10 @@
         	templateUrl: 'cp_admin/manage-jobs.html',
         	controller: 'AdminController',
         	controllerAs: 'vm'
+        }).when('/manage-events', {
+        	templateUrl: 'cp_admin/manage-events.html',
+        	controller: 'AdminController',
+        	controllerAs: 'vm'
         })
         /** User related url mappings */
         .when('/login', {

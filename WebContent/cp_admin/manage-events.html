@@ -1,0 +1,85 @@
+<div class="container-fluid">
+    <form method="POST" class="form-horizontal" role="form" name="form">
+        <h2>Event Creation/Updation Form</h2>
+        <div class="form-group">
+            <label for="eventId" class="col-sm-2 control-label">Event Id:</label>
+            <div class="col-sm-10">
+                <input type="text" name="eventId" class="form-control" disabled ng-model="vm.event.eventId">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="title" class="col-sm-2 control-label">Event Title:</label>
+            <div class="col-sm-10">
+                <input type="text" name="title" class="form-control" required="required" ng-model="vm.event.title">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="description" class="col-sm-2 control-label">Event Description:</label>
+            <div class="col-sm-10">
+                <textarea name="description" class="form-control" rows="5" required="required" ng-model="vm.event.description"></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="eventDate" class="col-sm-2 control-label">Event Date:</label>
+            <div class="col-sm-10">
+                <input type="date" name="eventDate" id="input" class="form-control" required="required" ng-model="vm.event.eventDate">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="venue" class="col-sm-2 control-label">Event Venue:</label>
+            <div class="col-sm-10">
+                <input type="text" name="venue" class="form-control" required="required" ng-model="vm.event.venue">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="status" class="col-sm-2 control-label">Event Status:</label>
+            <div class="col-sm-10">
+                <select name="status" class="form-control" required="required" ng-model="vm.event.status">
+                        <option value="NEW">NEW</option>
+                        <option value="DONE">DONE</option>
+                    </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-10 col-sm-offset-2" ng-show="vm.event.eventId != 'undefined' || vm.event.eventId != ''">
+                <button type="submit" class="btn btn-primary" ng-click="vm.postNewEvent(vm.event)">Post</button>
+            </div>
+            <div class="col-sm-10 col-sm-offset-2" ng-show="vm.event.eventId == '' || vm.event.eventId == 'undefined'">
+                <button type="submit" class="btn btn-primary" ng-click="vm.updateEvent(vm.event)">Update</button>
+            </div>
+        </div>
+    </form>
+    <hr>
+    <div class="container-fluid">
+
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Event Id</th>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Event Date</th>
+                        <th>Venue</th>
+                        <th>Status</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="event in vm.events">
+                        <td>{{ event.eventId }}</td>
+                        <td>{{ event.title }}</td>
+                        <td>{{ event.description }}</td>
+                        <td>{{ evnet.eventDate | date : 'medium' }}</td>
+                        <td>{{ event.venue }}</td>
+                        <td>{{ event.status }}</td>
+                        <td>
+                            <button type="submit" class="btn btn-primary" ng-click="vm.editEvent(event.eventId)">Edit</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
