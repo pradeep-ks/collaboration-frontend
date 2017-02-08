@@ -1,6 +1,60 @@
 
 <div>
-    <h1 style="text-align: center;">WELCOME TO HOME PAGE, {{ loggedInUser.username | uppercase }}</h1>
+    <h1 style="text-align: center;">WELCOME TO YOUR HOME PAGE, {{ loggedInUser.username | uppercase }}</h1>
+    
+    <div id="image-carousel" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#image-carousel" data-slide-to="0" class="active"></li>
+            <li data-target="#image-carousel" data-slide-to="1" class=""></li>
+            <li data-target="#image-carousel" data-slide-to="2" class=""></li>
+            <li data-target="#image-carousel" data-slide-to="3" class=""></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="item active">
+                <img alt="First slide" src="resources/images/collaborate.jpg">
+                <div class="container">
+                    <div class="carousel-caption">
+                        <h1>Collaborate</h1>
+                        <p>Collaborate with your friends and teachers to enhance your projects and learn new things.</p>
+                        <p><a class="btn btn-lg btn-primary" href="#!/register" role="button">Sign up today</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <img alt="Second slide" src="resources/images/blog.jpg">
+                <div class="container">
+                    <div class="carousel-caption">
+                        <h1>Blogs</h1>
+                        <p>Create Blogs, read blogs, make comments on blog created by your friends and other users.</p>
+                        <p><a class="btn btn-lg btn-primary" href="#!/view-blogs" role="button">Learn more</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <img alt="Third slide" src="resources/images/find-job.jpg">
+                <div class="container">
+                    <div class="carousel-caption">
+                        <h1>Jobs</h1>
+                        <p>View, search and apply for jobs suitable for you, all at one place.</p>
+                        <p><a class="btn btn-lg btn-primary" href="#!/view-jobs" role="button">View Jobs</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <img alt="Forth slide" src="resources/images/friendship.jpg">
+                <div class="container">
+                    <div class="carousel-caption">
+                        <h1>Friends</h1>
+                        <p>Find your friends here. Connect to them, collaborate with them, chat with them.</p>
+                        <p><a class="btn btn-lg btn-primary" href="#!/register" role="button">Sign Up</a> Here</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a class="left carousel-control" href="#image-carousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
+        <a class="right carousel-control" href="#image-carousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+    </div>
+    
     <div class="container-fluid" ng-show="loggedInUser.role == 'ADMIN'">
     	<div class="row">
     		<div class="panel panel-info col-md-3">
